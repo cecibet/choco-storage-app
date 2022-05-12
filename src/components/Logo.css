@@ -1,0 +1,12 @@
+@import url("https://fonts.googleapis.com/css2?family=Bangers&display=swap");
+
+.Logo {
+  font-family: "Bangers";
+  text-shadow: rgba(0, 0, 0, 0.4) 0px 1px 4px;
+  color: #f0e9d2;
+  letter-spacing: 3.5px;
+  font-size: 1.25em;
+  text-align: left;
+  padding-left: 2rem;
+  text-transform: uppercase;
+}

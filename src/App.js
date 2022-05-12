@@ -1,10 +1,11 @@
 import './App.css';
 import Login from './components/Login';
+import Logo from './components/Logo';
 
  const App = () => {
   return (
     <div className="App">
-      Chocostorage
+      <Logo />
       <Login />
     </div>
   );
