@@ -1,0 +1,12 @@
+button {
+    width: 30%;
+    height: 10vh;
+    font-size: 1.25em;
+    text-transform: uppercase;
+    font-weight: bold;
+    text-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.TaskButtons{
+    margin: 50px;
+}

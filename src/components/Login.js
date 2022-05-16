@@ -2,10 +2,10 @@ import React, { useState } from "react";
 
 import "./Login.css";
 
-const Login = () => {
+const Login = ({ isLoggedIn }) => {
   const [email, setEmail] = useState("");
-
   const [password, setPassword] = useState("");
+
   const handleEmail = (event) => {
     setEmail(event.target.value);
   };
@@ -25,7 +25,7 @@ const Login = () => {
   return (
     <div className="Login">
       <form onSubmit={handleSubmit}>
-        <label>Email  </label>
+        <label>Email </label>
 
         <input
           autoFocus
@@ -34,7 +34,7 @@ const Login = () => {
           onChange={handleEmail}
         ></input>
         <br></br>
-        <label>Contraseña  </label>
+        <label>Contraseña </label>
         <input
           type="password"
           value={password}
@@ -48,6 +48,6 @@ const Login = () => {
       </form>
     </div>
   );
-}
+};
 
 export default Login;
