@@ -1,13 +1,13 @@
+
 * {
   box-sizing: border-box;
+  font-family: 'Kdam Thmor Pro', sans-serif;
 }
 
-html {
-  font-family: "Roboto", sans-serif;
-}
+
 
 body {
   margin: 0;
-  background-color: #1f4659;
+  background-color: #212223;
 }
 

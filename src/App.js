@@ -8,50 +8,50 @@ const App = () => {
   const [sell, setSell] = useState(false);
 
   const sellHandler = () => {
+    if (!sell) {
+      if (chocBar) setChocBar(!chocBar);
+      if (chocFlake) setchocFlake(!chocFlake);
+      if (chocType) setchocType(!chocType);
+      if (easterEgg) setEasterEgg(!easterEgg);
+    }
     setSell(!sell);
     console.log(sell);
   };
 
-  const [easterEgg, seteasterEgg] = useState(false);
+  const [easterEgg, setEasterEgg] = useState(false);
 
   const easterEggHandler = () => {
-    seteasterEgg(!easterEgg);
-    if (chocBar) {
-      setchocBar(!chocBar);
-    }
-    if (chocFlake) {
-      setchocFlake(!chocFlake);
-    }
+    easterEgg ? setEasterEgg(easterEgg) : setEasterEgg(!easterEgg);
+    if (chocBar) setChocBar(!chocBar);
+    if (chocFlake) setchocFlake(!chocFlake);
+    if (chocType) setchocType(!chocType);
   };
 
-  const [chocBar, setchocBar] = useState(false);
+  const [chocBar, setChocBar] = useState(false);
 
   const chocBarHandler = () => {
-    setchocBar(!chocBar);
-    if (chocFlake) {
-      setchocFlake(!chocFlake);
-    }
-    if (easterEgg) {
-      seteasterEgg(!easterEgg);
-    }
+    chocBar ? setChocBar(chocBar) : setChocBar(!chocBar);
+
+    if (chocFlake) setchocFlake(!chocFlake);
+    if (easterEgg) setEasterEgg(!easterEgg);
+    if (chocType) setchocType(!chocType);
   };
 
   const [chocFlake, setchocFlake] = useState(false);
 
   const chocFlakeHandler = () => {
-    setchocFlake(!chocFlake);
-    if (easterEgg) {
-      seteasterEgg(!easterEgg);
-    }
-    if (chocBar) {
-      setchocBar(!chocBar);
-    }
+    chocFlake ? setchocFlake(chocFlake) : setchocFlake(!chocFlake);
+    if (easterEgg) setEasterEgg(!easterEgg);
+    if (chocBar) setChocBar(!chocBar);
+    if (chocType) setchocType(!chocType);
   };
 
   const [chocType, setchocType] = useState(false);
   const chocTypeHandler = () => {
-    setchocType(!chocType);
+    chocType ? setchocType(chocType) : setchocType(!chocType);
   };
+
+  
 
   return (
     <div className="App">
