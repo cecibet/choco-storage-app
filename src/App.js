@@ -5,70 +5,86 @@ import { useState } from "react";
 import TaskButtons from "./components/TaskButtons";
 
 const App = () => {
+  const products = [
+    { name: "Huevo de pascua", value: "huevo" },
+    { name: "Chocolate en barra", value: "barra" },
+    { name: "Chocolate en rama", value: "rama" },
+  ];
+
+  const eggTypes = ["Blanco", "Negro"];
+  const barTypes = ["Maní", "Amargo", "Leche"];
+  const flakeTypes = ["Blanco", "Negro"];
+
+  const eggWeights = ["70g", "110g"];
+  const barWeights = ["70g", "160g", "180g", "300g"];
+  const flakeWeights = ["70g", "160g"];
+
   const [sell, setSell] = useState(false);
 
   const sellHandler = () => {
-    if (!sell) {
-      if (chocBar) setChocBar(!chocBar);
-      if (chocFlake) setchocFlake(!chocFlake);
-      if (chocType) setchocType(!chocType);
-      if (easterEgg) setEasterEgg(!easterEgg);
-    }
     setSell(!sell);
     console.log(sell);
   };
 
-  const [easterEgg, setEasterEgg] = useState(false);
-
-  const easterEggHandler = () => {
-    easterEgg ? setEasterEgg(easterEgg) : setEasterEgg(!easterEgg);
-    if (chocBar) setChocBar(!chocBar);
-    if (chocFlake) setchocFlake(!chocFlake);
-    if (chocType) setchocType(!chocType);
+  const [product, setProduct] = useState("huevo");
+  const handleProductChange = (e) => {
+    setProduct(e.target.value);
   };
 
-  const [chocBar, setChocBar] = useState(false);
-
-  const chocBarHandler = () => {
-    chocBar ? setChocBar(chocBar) : setChocBar(!chocBar);
-
-    if (chocFlake) setchocFlake(!chocFlake);
-    if (easterEgg) setEasterEgg(!easterEgg);
-    if (chocType) setchocType(!chocType);
+  const [chocType, setChocType] = useState("");
+  const handleTypeChange = (e) => {
+    setChocType(e.target.value);
   };
 
-  const [chocFlake, setchocFlake] = useState(false);
-
-  const chocFlakeHandler = () => {
-    chocFlake ? setchocFlake(chocFlake) : setchocFlake(!chocFlake);
-    if (easterEgg) setEasterEgg(!easterEgg);
-    if (chocBar) setChocBar(!chocBar);
-    if (chocType) setchocType(!chocType);
+  const [chocWeight, setChocWeight] = useState("");
+  const handleWeightChange = (e) => {
+    setChocWeight(e.target.value);
   };
-
-  const [chocType, setchocType] = useState(false);
-  const chocTypeHandler = () => {
-    chocType ? setchocType(chocType) : setchocType(!chocType);
-  };
-
-  
+  console.log(product, chocType, chocWeight);
 
   return (
     <div className="App">
       <Logo />
 
-      <TaskButtons
-        sell={sell}
-        easterEgg={easterEgg}
-        chocBar={chocBar}
-        chocFlake={chocFlake}
-        chocType={chocType}
-        sellHandler={sellHandler}
-        chocBarHandler={chocBarHandler}
-        chocFlakeHandler={chocFlakeHandler}
-        easterEggHandler={easterEggHandler}
-        chocTypeHandler={chocTypeHandler}
-      ></TaskButtons>
+      <TaskButtons sell={sell} sellHandler={sellHandler}></TaskButtons>
+      {sell && (
+        <div>
+          <div className="custom-select">
+            <select onChange={handleProductChange}>
+              <option disabled>Seleccione</option>
+              {products.map((choco) => (
+                <option key={choco.name} value={choco.value}>
+                  {choco.name}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          <div className="custom-select">
+            <select onChange={handleTypeChange}>
+              {product === "barra" &&
+                barTypes.map((type) => <option value={type}>{type}</option>)}
+              {product === "huevo" &&
+                eggTypes.map((type) => <option value={type}>{type}</option>)}
+              {product === "rama" &&
+                flakeTypes.map((type) => <option value={type}>{type}</option>)}
+            </select>
+          </div>
+
+          <div className="custom-select">
+            <select onChange={handleWeightChange}>
+              {product === "barra" &&
+                barWeights.map((type) => <option value={type}>{type}</option>)}
+              {product === "huevo" &&
+                eggWeights.map((type) => <option value={type}>{type}</option>)}
+              {product === "rama" &&
+                flakeWeights.map((type) => (
+                  <option value={type}>{type}</option>
+                ))}
+            </select>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
