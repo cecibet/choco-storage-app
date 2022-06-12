@@ -21,6 +21,10 @@ const App = () => {
 
   const [sell, setSell] = useState(false);
 
+  const ChosenValue = (type) => {
+    return (<option value={type}>{type}</option>)
+  };
+
   const sellHandler = () => {
     setSell(!sell);
     console.log(sell);
@@ -63,24 +67,22 @@ const App = () => {
           <div className="custom-select">
             <select onChange={handleTypeChange}>
               {product === "barra" &&
-                barTypes.map((type) => <option value={type}>{type}</option>)}
+                barTypes.map(ChosenValue)}
               {product === "huevo" &&
-                eggTypes.map((type) => <option value={type}>{type}</option>)}
+                eggTypes.map(ChosenValue)}
               {product === "rama" &&
-                flakeTypes.map((type) => <option value={type}>{type}</option>)}
+                flakeTypes.map(ChosenValue)}
             </select>
           </div>
 
           <div className="custom-select">
             <select onChange={handleWeightChange}>
               {product === "barra" &&
-                barWeights.map((type) => <option value={type}>{type}</option>)}
+                barWeights.map(ChosenValue)}
               {product === "huevo" &&
-                eggWeights.map((type) => <option value={type}>{type}</option>)}
+                eggWeights.map(ChosenValue)}
               {product === "rama" &&
-                flakeWeights.map((type) => (
-                  <option value={type}>{type}</option>
-                ))}
+                flakeWeights.map(ChosenValue)}
             </select>
           </div>
         </div>
