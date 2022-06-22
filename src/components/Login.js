@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import UsersDB from "../DB/UsersDB";
 
 import "./Login.css";
 
@@ -10,20 +11,8 @@ const Login = () =>
   const [errorMessage, setErrorMessage] = useState("");
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  // DB Usuarios Harcode                                                  ??
-  const users = [
-    {
-      username: "vendedor",
-      password: "vendedorpass",
-      superAdmin: false
-    },
-    {
-      username: "supervisor",
-      password: "supervisorpass",
-      superAdmin: true
-    }
-  ];
- 
+  //instanciamos la "base de datos"
+  const users = UsersDB(); 
 
   const submitHandler = (event) => {
     event.preventDefault();
@@ -36,6 +25,7 @@ const Login = () =>
       setIsSubmitted(true);
       setSAdmin(currentUser.superAdmin);                              // por que no me setea el booleano??                            
       alert("entraste crack");
+      // poner SPINNER
       // Routear a home
     }
     else
