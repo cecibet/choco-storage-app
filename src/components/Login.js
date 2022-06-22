@@ -6,6 +6,7 @@ const Login = () =>
 {
   const [user, setUser] = useState("");
   const [pass, setPass] = useState("");
+  const [SAdmin,setSAdmin] = useState(null);
   const [errorMessage, setErrorMessage] = useState("");
   const [isSubmitted, setIsSubmitted] = useState(false);
 
@@ -27,19 +28,19 @@ const Login = () =>
   const submitHandler = (event) => {
     event.preventDefault();
 
-    const boolUser = users.filter((us) => (us.username === user)).length;
-    const boolPass = users.filter((us) => (us.password === pass)).length;
+    const currentUser = users.filter((us) => (us.username === user) && (us.password === pass));
+  //  console.log(currentUser.superAdmin)
     
-   // if(users.username.some(user) && users.password.some(pass))
-    if(boolUser && boolPass)
+    if(currentUser.length)
     {
       setIsSubmitted(true);
+      setSAdmin(currentUser.superAdmin);                              // por que no me setea el booleano??                            
       alert("entraste crack");
       // Routear a home
     }
     else
     {
-     setErrorMessage("Usuario o contraseña invalida.");  //preguntaar                                 ??
+     setErrorMessage("Usuario o contraseña invalida.");
     }
   };
 
@@ -53,8 +54,6 @@ const Login = () =>
   {
     setPass(event.target.value)
   };
-
-  //Formulario
 
 
   return (
