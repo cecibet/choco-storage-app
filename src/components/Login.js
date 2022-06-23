@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import UsersDB from "../DB/UsersDB";
 
 import "./Login.css";
+import Spinner from "./Spinner";
 
 const Login = () => {
   const [user, setUser] = useState("");
@@ -39,39 +40,42 @@ const Login = () => {
     setPass(event.target.value);
   };
 
-  return (
-    <div className="login">
-      <div className="login-form">
-        <form onSubmit={submitHandler}>
-          <div className="input-container">
-            <label>Usuario </label>
-            <input
-              autoFocus
-              type="text"
-              name="Usuario"
-              value={user}
-              onChange={userHandler}
-              required
-            />
-          </div>
-          <div className="input-container">
-            <label>Contraseña </label>
-            <input
-              type="password"
-              name="pass"
-              value={pass}
-              onChange={passHandler}
-              required
-            />
-          </div>
-          <p className="error">{errorMessage}</p>
-          <div className="button-container">
-            <input type="submit" />
-          </div>
-        </form>
+  const renderForm = () => {
+    return (
+      <div className="login">
+        <div className="login-form">
+          <form onSubmit={submitHandler}>
+            <div className="input-container">
+              <label>Usuario </label>
+              <input
+                autoFocus
+                type="text"
+                name="Usuario"
+                value={user}
+                onChange={userHandler}
+                required
+              />
+            </div>
+            <div className="input-container">
+              <label>Contraseña </label>
+              <input
+                type="password"
+                name="pass"
+                value={pass}
+                onChange={passHandler}
+                required
+              />
+            </div>
+            <p className="error">{errorMessage}</p>
+            <div className="button-container">
+              <input type="submit" />
+            </div>
+          </form>
+        </div>
       </div>
-    </div>
-  );
+    );
+  };
+  return (<div>{isSubmitted ? <Spinner /> : renderForm()}</div>);
 };
 
 export default Login;
