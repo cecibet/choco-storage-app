@@ -1,16 +1,14 @@
 import React from "react";
-import { Switch, Route, Redirect } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import App from "../App/App";
 
 const Layout = () => {
     return (
         <div>
-            <Switch>
-                <Route exact path="/App" component={App} />
-                <Route exact path="/" component={App}>
-                    <Redirect to="/App" />
-                </Route>
-            </Switch>
+            <Routes>
+                <Route path="/App" element={<App />} />
+                <Route path="/" element={<Navigate replace to="/App" />}></Route>
+            </Routes>
         </div>
     )
 }
