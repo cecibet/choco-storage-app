@@ -1,8 +1,8 @@
 import "./App.css";
-import Login from "./components/Login";
-import Logo from "./components/Logo";
+import Login from "./LoginForm/Login";
+import Logo from "../SharedComponents/Logo/Logo";
 import { useState } from "react";
-import TaskButtons from "./components/TaskButtons";
+import TaskButtons from "../Navbar/Menu/TaskButtons";
 
 const App = () => {
   const products = [
