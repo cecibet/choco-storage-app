@@ -3,6 +3,8 @@ import UsersDB from "../../../DB/UsersDB";
 
 import "./Login.css";
 import Spinner from "../../SharedComponents/Spinner/Spinner";
+import Logo from "../../SharedComponents/Logo/Logo";
+import { Navigate } from "react-router-dom";
 
 const Login = () => {
   const [user, setUser] = useState("");
@@ -24,7 +26,6 @@ const Login = () => {
     if (currentUser.length) {
       setIsSubmitted(true);
       setSAdmin(currentUser[0].superAdmin);
-      // Routear a home
     } else {
       setErrorMessage("Usuario o contraseña invalida.");
     }
@@ -72,9 +73,12 @@ const Login = () => {
     );
   };
   return (
-    <div className="login">
-      <div className="login-form">
-        <div>{isSubmitted ? <Spinner /> : renderForm()}</div>
+    <div>
+      {<Logo />}
+      <div className="login">
+        <div className="login-form">
+          <div>{isSubmitted ? <Spinner />  && <Navigate  to="/App" />: renderForm()}</div>
+        </div>
       </div>
     </div>
   );
