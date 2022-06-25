@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import UsersDB from "../../../DB/UsersDB";
 
 import "./Login.css";
+import Spinner from "../../SharedComponents/Spinner/Spinner";
 
 const Login = () => {
   const [user, setUser] = useState("");
@@ -23,8 +24,6 @@ const Login = () => {
     if (currentUser.length) {
       setIsSubmitted(true);
       setSAdmin(currentUser[0].superAdmin);
-      alert("entraste crack");
-      // poner SPINNER
       // Routear a home
     } else {
       setErrorMessage("Usuario o contraseña invalida.");
@@ -39,9 +38,9 @@ const Login = () => {
     setPass(event.target.value);
   };
 
-  return (
-    <div className="login">
-      <div className="login-form">
+  const renderForm = () => {
+    return (
+      <div>
         <form onSubmit={submitHandler}>
           <div className="input-container">
             <label>Usuario </label>
@@ -69,6 +68,13 @@ const Login = () => {
             <input type="submit" />
           </div>
         </form>
+      </div>
+    );
+  };
+  return (
+    <div className="login">
+      <div className="login-form">
+        <div>{isSubmitted ? <Spinner /> : renderForm()}</div>
       </div>
     </div>
   );
