@@ -2,85 +2,100 @@ import "./App.css";
 import Logo from "../SharedComponents/Logo/Logo";
 import { useState } from "react";
 import TaskButtons from "../Navbar/Menu/TaskButtons";
+import Dropdown from "../SharedComponents/Dropdown/Dropdown";
+const productsData = require("../../DB/productsData.json");
 
 const App = () => {
-
-  const products = [
-    { name: "Huevo de pascua", value: "huevo" },
-    { name: "Chocolate en barra", value: "barra" },
-    { name: "Chocolate en rama", value: "rama" },
-  ];
-
-  const eggTypes = ["Blanco", "Negro"];
-  const barTypes = ["Maní", "Amargo", "Leche"];
-  const flakeTypes = ["Blanco", "Negro"];
-
-  const eggWeights = ["70g", "110g"];
-  const barWeights = ["70g", "160g", "180g", "300g"];
-  const flakeWeights = ["70g", "160g"];
-
-  const [sell, setSell] = useState(false);
-
-  const ChosenValue = (type) => {
-    return <option value={type}>{type}</option>;
-  };
+  const [sell, setSell] = useState(true);
 
   const sellHandler = () => {
     setSell(!sell);
-    console.log(sell);
   };
 
-  const [product, setProduct] = useState("huevo");
+  const [prodType, setProductType] = useState("");
+
   const handleProductChange = (e) => {
-    setProduct(e.target.value);
+    // eslint-disable-next-line default-case
+    switch (e.target.value) {
+      case "Huevo de pascua": {
+        setChocTypeOptions(productsData.chocTypes.eggTypes);
+        setWeightTypeOptions(productsData.weightTypes.eggWeights);
+        break;
+      }
+      case "Chocolate en barra": {
+        setChocTypeOptions(productsData.chocTypes.barTypes);
+        setWeightTypeOptions(productsData.weightTypes.barWeights);
+        break;
+      }
+      case "Chocolate en rama": {
+        setChocTypeOptions(productsData.chocTypes.flakeTypes);
+        setWeightTypeOptions(productsData.weightTypes.flakeWeights);
+        break;
+      }
+    }
+    setProductType(e.target.value);
   };
 
-  const [chocType, setChocType] = useState("");
-  const handleTypeChange = (e) => {
-    setChocType(e.target.value);
-  };
+  // const [chocType, setChocType] = useState("");
+  // const handleTypeChange = (e) => {
+  //   setChocType(e.target.value);
+  // };
 
-  const [chocWeight, setChocWeight] = useState("");
-  const handleWeightChange = (e) => {
-    setChocWeight(e.target.value);
-  };
-  console.log(product, chocType, chocWeight);
+  // const [chocWeight, setChocWeight] = useState("");
+  // const handleWeightChange = (e) => {
+  //   setChocWeight(e.target.value);
+  // };
+
+  const [chocTypeOptions, setChocTypeOptions] = useState([]);
+  const [weightTypeOptions, setWeightTypeOptions] = useState([]);
+
+  console.log(chocTypeOptions, weightTypeOptions);
+
+  const productTypes = [
+    "Huevo de pascua",
+    "Chocolate en barra",
+    "Chocolate en rama",
+  ];
+
+  // const chocTypes = {
+  //   eggTypes: ["Blanco", "Negro"],
+  //   barTypes: ["Maní", "Amargo", "Leche"],
+  //   flakeTypes: ["Blanco", "Negro"],
+  // };
+
+  // const weightTypes = {
+  //   eggWeights: ["70g", "110g"],
+  //   barWeights: ["70g", "160g", "180g", "300g"],
+  //   flakeWeights: ["70g", "160g"],
+  // };
+
+  console.log(chocTypeOptions);
 
   return (
     <div className="App">
       <Logo />
 
       <TaskButtons sell={sell} sellHandler={sellHandler}></TaskButtons>
-      {sell && (
-        <div>
-          <div className="custom-select">
-            <select onChange={handleProductChange}>
-              <option disabled>Seleccione</option>
-              {products.map((choco) => (
-                <option key={choco.name} value={choco.value}>
-                  {choco.name}
-                </option>
-              ))}
-            </select>
-          </div>
 
-          <div className="custom-select">
-            <select onChange={handleTypeChange}>
-              {product === "barra" && barTypes.map(ChosenValue)}
-              {product === "huevo" && eggTypes.map(ChosenValue)}
-              {product === "rama" && flakeTypes.map(ChosenValue)}
-            </select>
-          </div>
+      <Dropdown
+        label={"Tipo de producto"}
+        options={productsData.productTypes}
+        //value={prodType}
+        onChange={handleProductChange}
+      />
+      <Dropdown
+        label={"Tipo de chocolate"}
+        options={chocTypeOptions}
+        //value={chocType}
+        //onChange={handleTypeChange}
+      />
 
-          <div className="custom-select">
-            <select onChange={handleWeightChange}>
-              {product === "barra" && barWeights.map(ChosenValue)}
-              {product === "huevo" && eggWeights.map(ChosenValue)}
-              {product === "rama" && flakeWeights.map(ChosenValue)}
-            </select>
-          </div>
-        </div>
-      )}
+      <Dropdown
+        label={"Peso"}
+        options={weightTypeOptions}
+        //value={chocWeight}
+        //onChange={handleWeightChange}
+      />
     </div>
   );
 };
