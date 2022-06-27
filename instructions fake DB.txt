@@ -1,0 +1,9 @@
+* instalar: npm install -g json-server
+
+* si el shell de windows bloquea el script:
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+
+// por si acaso
+Unblock-File ./src/DB/productsData.json
+Unblock-File ./src/DB/response_allproducts.json
+
