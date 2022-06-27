@@ -7,9 +7,9 @@ const initialState = {
   token: null, // JSON Web Token (JWT)
 };
 
-export const AuthContext = createContext(initialState);
+const AuthContext = createContext(initialState);
 
-export const AuthDispatchContext = createContext(null);
+const AuthDispatchContext = createContext(null);
 
 export function useAuth() {
     const auth = useContext(AuthContext);
@@ -20,7 +20,7 @@ export function useAuth() {
     return useContext(AuthDispatchContext);
   }
 
-export default function AuthContextProvider({ children }) {         //esta bien el "default"?
+export default function AuthContextProvider({ children }) {
   const [auth, dispatch] = useReducer(authReducer, initialState);
 
   const baseUrl = "http://localhost:8765/api";
@@ -107,4 +107,3 @@ function authReducer(state, action) {
     }
   }
 }
-
