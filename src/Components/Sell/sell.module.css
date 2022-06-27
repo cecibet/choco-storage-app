@@ -1,0 +1,8 @@
+.sellContainer {
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    gap: 25px;
+    display: flex;
+
+  }
