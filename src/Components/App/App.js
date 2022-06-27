@@ -4,72 +4,62 @@ import { useState } from "react";
 import TaskButtons from "../Navbar/Menu/TaskButtons";
 import Dropdown from "../SharedComponents/Dropdown/Dropdown";
 const productsData = require("../../DB/productsData.json");
+const dataProducts = require("../../DB/dataProducts.json");
 
 const App = () => {
   const [sell, setSell] = useState(true);
-
-  const sellHandler = () => {
-    setSell(!sell);
-  };
-
   const [prodType, setProductType] = useState("");
+  const [chocTypeOptions, setChocTypeOptions] = useState([]);
+  const [weightTypeOptions, setWeightTypeOptions] = useState([]);
+
+  const productTypes = [...new Set(dataProducts.map((e) => e.productType))];
+  console.log(productTypes);
+
+  const eggTypesjson = dataProducts.filter(function (item) {
+    return item.productType === "Huevo de Pascua";
+  });
+  const eggChocTypes = [...new Set(eggTypesjson.map((e) => e.chocolateType))];
+  const eggWeightTypes = [...new Set(eggTypesjson.map((e) => e.weight))];
+
+  const barTypesjson = dataProducts.filter(function (item) {
+    return item.productType === "Chocolate en Barra";
+  });
+  const barChocTypes = [...new Set(barTypesjson.map((e) => e.chocolateType))];
+  const barWeightTypes = [...new Set(barTypesjson.map((e) => e.weight))];
+
+  const flakeTypesjson = dataProducts.filter(function (item) {
+    return item.productType === "Chocolate en Rama";
+  });
+  const flakeChocTypes = [
+    ...new Set(flakeTypesjson.map((e) => e.chocolateType)),
+  ];
+  const flakeWeightTypes = [...new Set(flakeTypesjson.map((e) => e.weight))];
 
   const handleProductChange = (e) => {
     // eslint-disable-next-line default-case
     switch (e.target.value) {
       case "Huevo de pascua": {
-        setChocTypeOptions(productsData.chocTypes.eggTypes);
-        setWeightTypeOptions(productsData.weightTypes.eggWeights);
+        setChocTypeOptions(eggChocTypes);
+        setWeightTypeOptions(eggWeightTypes);
         break;
       }
       case "Chocolate en barra": {
-        setChocTypeOptions(productsData.chocTypes.barTypes);
-        setWeightTypeOptions(productsData.weightTypes.barWeights);
+        setChocTypeOptions(barChocTypes);
+        setWeightTypeOptions(barWeightTypes);
         break;
       }
       case "Chocolate en rama": {
-        setChocTypeOptions(productsData.chocTypes.flakeTypes);
-        setWeightTypeOptions(productsData.weightTypes.flakeWeights);
+        setChocTypeOptions(flakeChocTypes);
+        setWeightTypeOptions(flakeWeightTypes);
         break;
       }
     }
     setProductType(e.target.value);
   };
 
-  // const [chocType, setChocType] = useState("");
-  // const handleTypeChange = (e) => {
-  //   setChocType(e.target.value);
-  // };
-
-  // const [chocWeight, setChocWeight] = useState("");
-  // const handleWeightChange = (e) => {
-  //   setChocWeight(e.target.value);
-  // };
-
-  const [chocTypeOptions, setChocTypeOptions] = useState([]);
-  const [weightTypeOptions, setWeightTypeOptions] = useState([]);
-
-  console.log(chocTypeOptions, weightTypeOptions);
-
-  const productTypes = [
-    "Huevo de pascua",
-    "Chocolate en barra",
-    "Chocolate en rama",
-  ];
-
-  // const chocTypes = {
-  //   eggTypes: ["Blanco", "Negro"],
-  //   barTypes: ["Maní", "Amargo", "Leche"],
-  //   flakeTypes: ["Blanco", "Negro"],
-  // };
-
-  // const weightTypes = {
-  //   eggWeights: ["70g", "110g"],
-  //   barWeights: ["70g", "160g", "180g", "300g"],
-  //   flakeWeights: ["70g", "160g"],
-  // };
-
-  console.log(chocTypeOptions);
+  const sellHandler = () => {
+    setSell(!sell);
+  };
 
   return (
     <div className="App">
