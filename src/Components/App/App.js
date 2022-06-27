@@ -1,7 +1,5 @@
 import "./App.css";
-import Logo from "../SharedComponents/Logo/Logo";
 import { useState } from "react";
-import TaskButtons from "../Navbar/Menu/TaskButtons";
 import Dropdown from "../SharedComponents/Dropdown/Dropdown";
 const productsData = require("../../DB/productsData.json");
 const dataProducts = require("../../DB/dataProducts.json");
@@ -63,10 +61,6 @@ const App = () => {
 
   return (
     <div className="App">
-      <Logo />
-
-      <TaskButtons sell={sell} sellHandler={sellHandler}></TaskButtons>
-
       <Dropdown
         label={"Tipo de producto"}
         options={productsData.productTypes}
@@ -76,15 +70,15 @@ const App = () => {
       <Dropdown
         label={"Tipo de chocolate"}
         options={chocTypeOptions}
-        //value={chocType}
-        //onChange={handleTypeChange}
+      //value={chocType}
+      //onChange={handleTypeChange}
       />
 
       <Dropdown
         label={"Peso"}
         options={weightTypeOptions}
-        //value={chocWeight}
-        //onChange={handleWeightChange}
+      //value={chocWeight}
+      //onChange={handleWeightChange}
       />
     </div>
   );

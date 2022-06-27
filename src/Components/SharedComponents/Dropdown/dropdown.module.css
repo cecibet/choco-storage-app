@@ -1,15 +1,15 @@
-.custom-select {
+.customSelect {
   position: relative;
-  display: block;
+  display: inline-block;
   max-width: 600px;
   min-width: 180px;
   margin: auto;
+  margin-right: 25px;
   border: 1px solid #6d3ec3;
   background-color: #2d1659c4;
   z-index: 10;
-  margin-bottom: 21px;
 }
-label {
+.label {
   color: #d8d6dd;
 }
 
@@ -22,14 +22,14 @@ select {
   -moz-appearance: none;
   appearance: none;
   display: block;
-  width: 100%;
+  width: 300px;
   padding: 12px 55px 15px 15px;
   font-size: 1.25em;
   color: #d8d6dd;
   box-shadow: rgb(226, 219, 226) 0px 1px 5px;
 }
 
-.custom-select::after {
+.customSelect::after {
   position: absolute;
   right: 0;
   top: 0;
