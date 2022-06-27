@@ -1,42 +1,34 @@
 import React, { useState } from "react";
-import { useAuth, useAuthDispatch } from "../../Context/AuthContextProvider";
-import { Navigate } from "react-router-dom";
+import UsersDB from "../../../DB/UsersDB";
 
 import "./Login.css";
-
-// import UsersDB from "../../../DB/UsersDB";
 import Spinner from "../../SharedComponents/Spinner/Spinner";
 import Logo from "../../SharedComponents/Logo/Logo";
-
+import { Navigate } from "react-router-dom";
 
 const Login = () => {
   const [user, setUser] = useState("");
   const [pass, setPass] = useState("");
+  const [SAdmin, setSAdmin] = useState(null);
+  const [errorMessage, setErrorMessage] = useState("");
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
-  const dispatch = useAuthDispatch();
-  const auth = useAuth();
-
-  // const [errorMessage, setErrorMessage] = useState(""); //quizas no lo use e use el msje que tira en authcontextprovider
-  // const [isSubmitted, setIsSubmitted] = useState(false);
-
-  //instanciamos la "base de datos" KJJJJ
-  // const users = UsersDB();
+  //instanciamos la "base de datos"
+  const users = UsersDB();
 
   const submitHandler = (event) => {
     event.preventDefault();
 
-    dispatch.login(user, pass); // originalmente --> dispatch.login(email, password);
-
-    /*   const currentUser = users.filter(
+    const currentUser = users.filter(
       (us) => us.username === user && us.password === pass
     );
 
     if (currentUser.length) {
       setIsSubmitted(true);
+      setSAdmin(currentUser[0].superAdmin);
     } else {
       setErrorMessage("Usuario o contraseña invalida.");
-    } 
-    */
+    }
   };
 
   const userHandler = (event) => {
@@ -47,42 +39,46 @@ const Login = () => {
     setPass(event.target.value);
   };
 
+  const renderForm = () => {
+    return (
+      <div>
+        <form onSubmit={submitHandler}>
+          <div className="input-container">
+            <label>Usuario </label>
+            <input
+              autoFocus
+              type="text"
+              name="Usuario"
+              value={user}
+              onChange={userHandler}
+              required
+            />
+          </div>
+          <div className="input-container">
+            <label>Contraseña </label>
+            <input
+              type="password"
+              name="pass"
+              value={pass}
+              onChange={passHandler}
+              required
+            />
+          </div>
+          <p className="error">{errorMessage}</p>
+          <div className="button-container">
+            <input type="submit" />
+          </div>
+        </form>
+      </div>
+    );
+  };
   return (
     <div>
-      <Logo />
+      {<Logo />}
       <div className="login">
         <div className="login-form">
-          <form onSubmit={submitHandler}>
-            <div className="input-container">
-              <label>Usuario </label>
-              <input
-                autoFocus
-                type="text"
-                name="Usuario"
-                value={user}
-                onChange={userHandler}
-                required
-              />
-            </div>
-            <div className="input-container">
-              <label>Contraseña </label>
-              <input
-                type="password"
-                name="pass"
-                value={pass}
-                onChange={passHandler}
-                required
-              />
-            </div>
-            <p className="error">{/*errorMessage*/}</p>
-            <div className="button-container">
-              <input type="submit" />
-            </div>
-          </form>
+          <div>{isSubmitted ? <Spinner />  && <Navigate  to="/App" />: renderForm()}</div>
         </div>
-        
-        {auth.waitingLogin === true && <Spinner />}
-        {auth.waitingLogin === false && <Navigate to="/App" />}
       </div>
     </div>
   );

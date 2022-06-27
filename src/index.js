@@ -3,9 +3,8 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import { BrowserRouter } from 'react-router-dom';
 import Layout from './Components/Layout';
-import AppWrappers from './Components/App/AppWrappers';
 
-const root = ReactDOM.createRoot(<AppWrappers />, document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
