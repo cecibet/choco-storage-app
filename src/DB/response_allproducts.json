@@ -1,0 +1,138 @@
+[
+  {
+    "productId": 1,
+    "productType": "HuevoDePascua",
+    "chocolateType": "Blanco",
+    "weight": 70,
+    "unitPrice": 300,
+    "stock": 50
+  },
+  {
+    "productId": 2,
+    "productType": "HuevoDePascua",
+    "chocolateType": "Blanco",
+    "weight": 190,
+    "unitPrice": 500,
+    "stock": 20
+  },
+  {
+    "productId": 3,
+    "productType": "HuevoDePascua",
+    "chocolateType": "Negro",
+    "weight": 70,
+    "unitPrice": 300,
+    "stock": 20
+  },
+  {
+    "productId": 4,
+    "productType": "HuevoDePascua",
+    "chocolateType": "Negro",
+    "weight": 110,
+    "unitPrice": 500,
+    "stock": 20
+  },
+  {
+    "productId": 5,
+    "productType": "ChocolateEnBarra",
+    "chocolateType": "Amargo",
+    "weight": 120,
+    "unitPrice": 400,
+    "stock": 4
+  },
+  {
+    "productId": 6,
+    "productType": "ChocolateEnBarra",
+    "chocolateType": "Amargo",
+    "weight": 180,
+    "unitPrice": 600,
+    "stock": 20
+  },
+  {
+    "productId": 7,
+    "productType": "ChocolateEnBarra",
+    "chocolateType": "Amargo",
+    "weight": 300,
+    "unitPrice": 750,
+    "stock": 20
+  },
+  {
+    "productId": 8,
+    "productType": "ChocolateEnBarra",
+    "chocolateType": "Mani",
+    "weight": 120,
+    "unitPrice": 400,
+    "stock": 4
+  },
+  {
+    "productId": 9,
+    "productType": "ChocolateEnBarra",
+    "chocolateType": "Mani",
+    "weight": 180,
+    "unitPrice": 600,
+    "stock": 20
+  },
+  {
+    "productId": 10,
+    "productType": "ChocolateEnBarra",
+    "chocolateType": "Mani",
+    "weight": 300,
+    "unitPrice": 750,
+    "stock": 20
+  },
+  {
+    "productId": 11,
+    "productType": "ChocolateEnBarra",
+    "chocolateType": "Leche",
+    "weight": 120,
+    "unitPrice": 400,
+    "stock": 4
+  },
+  {
+    "productId": 12,
+    "productType": "ChocolateEnBarra",
+    "chocolateType": "Leche",
+    "weight": 180,
+    "unitPrice": 600,
+    "stock": 20
+  },
+  {
+    "productId": 13,
+    "productType": "ChocolateEnBarra",
+    "chocolateType": "Leche",
+    "weight": 300,
+    "unitPrice": 750,
+    "stock": 20
+  },
+  {
+    "productId": 14,
+    "productType": "ChocolateEnRama",
+    "chocolateType": "Blanco",
+    "weight": 70,
+    "unitPrice": 350,
+    "stock": 10
+  },
+  {
+    "productId": 15,
+    "productType": "ChocolateEnRama",
+    "chocolateType": "Blanco",
+    "weight": 160,
+    "unitPrice": 500,
+    "stock": 20
+  },
+  {
+    "productId": 16,
+    "productType": "ChocolateEnRama",
+    "chocolateType": "Negro",
+    "weight": 70,
+    "unitPrice": 350,
+    "stock": 20
+  },
+  {
+    "productId": 17,
+    "productType": "ChocolateEnRama",
+    "chocolateType": "Negro",
+    "weight": 160,
+    "unitPrice": 500,
+    "stock": 2
+  }
+]
