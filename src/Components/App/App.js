@@ -1,7 +1,7 @@
 import "./App.css";
 import Logo from "../SharedComponents/Logo/Logo";
 import { useState } from "react";
-import TaskButtons from "../Navbar/Menu/TaskButtons";
+import TaskButtons from "../Navbar/Menu/Menu";
 
 const App = () => {
   const products = [

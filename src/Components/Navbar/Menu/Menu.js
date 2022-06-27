@@ -1,9 +1,9 @@
 import React from "react";
-import "./TaskButtons.css";
+import "./Menu.css";
 
-const TaskButtons = ({ sell, sellHandler }) => {
+const Menu = ({ sell, sellHandler }) => {
   return (
-    <div className="TaskButtons">
+    <div className="Menu">
       <button>Cargar compra</button>
       <button onClick={sellHandler}>Venta</button>
       <button>Ver stock</button>
@@ -13,4 +13,4 @@ const TaskButtons = ({ sell, sellHandler }) => {
   );
 };
 
-export default TaskButtons;
+export default Menu;
