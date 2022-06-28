@@ -1,0 +1,5 @@
+.layoutContainer {
+  display: flex;
+  flex-direction: column;
+  margin: 25px;
+}

@@ -1,0 +1,9 @@
+.hdrContainer {
+  display: flex;
+  height: 100px;
+  align-items: center;
+  justify-content: space-between;
+  background-color: rgb(56, 56, 58);
+  border-radius: 5px;
+  margin-bottom: 40px;
+}

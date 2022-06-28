@@ -1,10 +1,11 @@
-import "./App.css";
 import { useState } from "react";
 import Dropdown from "../SharedComponents/Dropdown/Dropdown";
+import Input from "../SharedComponents/InputBox/InputBox";
+import styles from "./sell.module.css";
 const productsData = require("../../DB/productsData.json");
 const dataProducts = require("../../DB/dataProducts.json");
 
-const App = () => {
+const Sell = () => {
   const [sell, setSell] = useState(true);
   const [prodType, setProductType] = useState("");
   const [chocTypeOptions, setChocTypeOptions] = useState([]);
@@ -60,7 +61,7 @@ const App = () => {
   };
 
   return (
-    <div className="App">
+    <div className={styles.sellContainer}>
       <Dropdown
         label={"Tipo de producto"}
         options={productsData.productTypes}
@@ -70,41 +71,19 @@ const App = () => {
       <Dropdown
         label={"Tipo de chocolate"}
         options={chocTypeOptions}
-      //value={chocType}
-      //onChange={handleTypeChange}
+        //value={chocType}
+        //onChange={handleTypeChange}
       />
 
       <Dropdown
         label={"Peso"}
         options={weightTypeOptions}
-      //value={chocWeight}
-      //onChange={handleWeightChange}
+        //value={chocWeight}
+        //onChange={handleWeightChange}
       />
+      <Input labelText={"Cantidad"} type="number" min="1" />
     </div>
   );
 };
 
-export default App;
-
-/*
-import "./App.css";
-import Logo from "../SharedComponents/Logo/Logo";
-import { useState } from "react";
-import TaskButtons from "../Navbar/Menu/TaskButtons";
-import { useAuth } from "../Context/AuthContextProvider";
-const App = () => {
-  const auth = useAuth();
-   return (
-    <div className="App">
-      <Logo />
-      { auth.currentUser &&
-            renderizar los componentes si esta autorizado. capaz preguntar aca quien es el usuario a ver que componentes se renderizan
-          }
-          { !auth.currentUser && 
-            <Login />
-          }
-    </div>
-  );
-  };
-export default App;
-*/
+export default Sell;
