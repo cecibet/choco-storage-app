@@ -2,7 +2,7 @@ import React, { useReducer, createContext, useContext } from "react";
 
 const initialState = {
   currentUser: null,
-  waitingLogin: null, //cambié de false a null
+  waitingLogin: false,
   loginError: "",
   token: null, // JSON Web Token (JWT)
 };
@@ -23,7 +23,7 @@ export function useAuth() {
 export default function AuthContextProvider({ children }) {
   const [auth, dispatch] = useReducer(authReducer, initialState);
 
-  const baseUrl = "http://localhost:8765/api";
+  const baseUrl = "http://localhost:3000";
 
 
   const asyncDispatcher = {

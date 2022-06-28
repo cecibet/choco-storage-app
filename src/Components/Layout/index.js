@@ -3,6 +3,7 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 import Sell from "../Sell/Sell";
 import Header from "../Header/Header";
 import Menu from "../Navbar/Menu/Menu";
+import Login from "../LoginForm/Login";
 import styles from "./index.module.css"
 
 const Layout = () => {
@@ -11,6 +12,7 @@ const Layout = () => {
             <Header />
             <Menu />
             <Routes>
+                <Route path="/Login" element={<Login />} />
                 <Route path="/Sell" element={<Sell />} />
                 <Route path="/" element={<Navigate replace to="/Sell" />}></Route>
             </Routes>
