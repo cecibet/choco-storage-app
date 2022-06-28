@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+/*import React, { useState } from "react";
 import { useAuth, useAuthDispatch } from "../Context/AuthContextProvider";
 import { Navigate } from "react-router-dom";
 
@@ -34,8 +34,8 @@ const Login = () => {
       setIsSubmitted(true);
     } else {
       setErrorMessage("Usuario o contraseña invalida.");
-    } 
-    */
+    } *
+
   };
 
   const userHandler = (event) => {
@@ -73,7 +73,7 @@ const Login = () => {
                 required
               />
             </div>
-            <p className="error">{/*errorMessage*/}</p>
+            <p className="error">{/*errorMessage*}</p>
             <div className="button-container">
               <input type="submit" />
             </div>
@@ -87,4 +87,47 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Login;*/
+
+
+
+
+
+
+
+
+
+
+
+import React, { useState } from 'react';
+import { useAuthDispatch, useAuth } from '../Context/AuthContextProvider';
+
+export default function Login () {
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    // REVIEW: 6. uso del dispatch en un componente alejado
+    const dispatch = useAuthDispatch();
+    // equivalente: const auth = useContext(AuthContext);
+    const auth = useAuth();
+
+
+    return (
+        <div>
+            <label>Email</label>
+            <input value={email} onChange={(event) => { setEmail(event.target.value) }} type="text" />
+            <label>Password</label>
+            <input value={password} onChange={(event) => { setPassword(event.target.value) }} type="password" />
+            {   auth.waitingLogin &&
+                    <p>Logueando por favor espere ....</p>
+            }
+            {   !auth.waitingLogin &&
+                <button
+                    onClick={() => {
+                        dispatch.login(email, password);
+                        console.log("datos", email, password)
+                    }}
+                >Login</button>
+            }
+        </div>
+    )
+}

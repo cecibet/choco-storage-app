@@ -2,7 +2,7 @@ import React, { useReducer, createContext, useContext } from "react";
 
 const initialState = {
   currentUser: null,
-  waitingLogin: false,
+  waitingLogin: false,   //cambien false por null
   loginError: "",
   token: null, // JSON Web Token (JWT)
 };

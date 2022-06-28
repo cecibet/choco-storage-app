@@ -2,10 +2,15 @@ const fs = require('fs')
 const bodyParser = require('body-parser')
 const jsonServer = require('json-server')
 const jwt = require('jsonwebtoken')
+
 const server = jsonServer.create()
+
 const router = jsonServer.router('./src/DB/dataProducts.json')
+
 const userdb = JSON.parse(fs.readFileSync('./users.json', 'UTF-8'))
-server.use(jsonServer.defaults());
+
+server.use(jsonServer.defaults()); //al usar default no necesito instanciar 'body-parser'
+
 const SECRET_KEY = '123456789'
 const expiresIn = '2h'
 
@@ -25,7 +30,9 @@ function isAuthenticated({ email, password }) {
 }
 
 server.post('/auth/login', (req, res) => {
-    const { email, password } = req.body
+//    const email = "bruno@email.com";
+//    const password = "bruno";
+  const { email, password } = req.body  //puedo hardcodear email y pass en dos const para probar
     if (isAuthenticated({ email, password }) === false) {
         const status = 401
         const message = 'Incorrect email or password'
@@ -34,8 +41,9 @@ server.post('/auth/login', (req, res) => {
     }
     const access_token = createToken({ email, password })
     res.status(200).json({ access_token })
-})
+});
 
+ //seteo de middlewares
 server.use(/^(?!\/auth).*$/, (req, res, next) => {
     if (req.headers.authorization === undefined || req.headers.authorization.split(' ')[0] !== 'Bearer') {
         const status = 401
@@ -51,10 +59,10 @@ server.use(/^(?!\/auth).*$/, (req, res, next) => {
         const message = 'Error: access_token is not valid'
         res.status(status).json({ status, message })
     }
-})
+});
 
 server.use(router)
 
 server.listen(3000, () => {
     console.log('Run Auth API Server')
-})
+});
