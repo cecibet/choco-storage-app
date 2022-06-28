@@ -1,12 +1,12 @@
 import React from "react";
-import "./Dropdown.css";
+import styles from "./dropdown.module.css";
 
 
 
 const Dropdown = ({ options, onChange, label }) => {
   return (
-    <div className="custom-select">
-      <label>
+    <div className={styles.customSelect}>
+      <label className={styles.label}>
         {label}
         <select onChange={onChange}>
           <option disabled selected>
