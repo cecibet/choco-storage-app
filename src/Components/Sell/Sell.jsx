@@ -3,72 +3,28 @@ import { useState } from "react";
 import Dropdown from "../SharedComponents/Dropdown/Dropdown";
 import Input from "../SharedComponents/InputBox/InputBox";
 import styles from "./sell.module.css";
-// const productsData = require("../../DB/productsData.json");
-// const dataProducts = require("../../DB/dataProducts.json");
 
 const Sell = () => {
   const [sell, setSell] = useState(true);
-  const [prodType, setProductType] = useState("");
   const [chocTypeOptions, setChocTypeOptions] = useState([]);
-  const [weightTypeOptions, setWeightTypeOptions] = useState([]);
   const [dataProducts, setDataProducts] = useState({});
+  const [productTypes, setProductTypes] = useState([]);
 
   useEffect(() => {
     fetch("http://localhost:3000/products")
       .then((res) => res.json())
       .then((res) => {
-        console.log(res);
         setDataProducts(res);
+        setProductTypes([...new Set(res.map((product) => product.productType))]);
       });
-    // formatData();
   }, []);
 
-  //   const formatData = () => {
-  //     const productTypes = [...new Set(dataProducts.map((e) => e.productType))];
-  //     console.log(productTypes);
 
-  //     const eggTypesjson = dataProducts.filter(function (item) {
-  //       return item.productType === "Huevo de Pascua";
-  //     });
-  //     const eggChocTypes = [...new Set(eggTypesjson.map((e) => e.chocolateType))];
-  //     const eggWeightTypes = [...new Set(eggTypesjson.map((e) => e.weight))];
-
-  //     const barTypesjson = dataProducts.filter(function (item) {
-  //       return item.productType === "Chocolate en Barra";
-  //     });
-  //     const barChocTypes = [...new Set(barTypesjson.map((e) => e.chocolateType))];
-  //     const barWeightTypes = [...new Set(barTypesjson.map((e) => e.weight))];
-
-  //     const flakeTypesjson = dataProducts.filter(function (item) {
-  //       return item.productType === "Chocolate en Rama";
-  //     });
-  //     const flakeChocTypes = [
-  //       ...new Set(flakeTypesjson.map((e) => e.chocolateType)),
-  //     ];
-  //     const flakeWeightTypes = [...new Set(flakeTypesjson.map((e) => e.weight))];
-  //   };
-
-  //   const handleProductChange = (e) => {
-  //     // eslint-disable-next-line default-case
-  //     switch (e.target.value) {
-  //       case "Huevo de pascua": {
-  //         setChocTypeOptions(eggChocTypes);
-  //         setWeightTypeOptions(eggWeightTypes);
-  //         break;
-  //       }
-  //       case "Chocolate en barra": {
-  //         setChocTypeOptions(barChocTypes);
-  //         setWeightTypeOptions(barWeightTypes);
-  //         break;
-  //       }
-  //       case "Chocolate en rama": {
-  //         setChocTypeOptions(flakeChocTypes);
-  //         setWeightTypeOptions(flakeWeightTypes);
-  //         break;
-  //       }
-  //     }
-  //     setProductType(e.target.value);
-  //   };
+  const handleProductChange = (e) => {
+    setChocTypeOptions(
+      dataProducts.filter((product) => product.productType === e.target.value)
+    );
+  };
 
   const sellHandler = () => {
     setSell(!sell);
@@ -78,22 +34,19 @@ const Sell = () => {
     <div className={styles.sellContainer}>
       <Dropdown
         label={"Tipo de producto"}
-        options={dataProducts.productTypes}
-        //value={prodType}
-        // onChange={handleProductChange}
+        options={productTypes}
+        onChange={handleProductChange}
       />
       <Dropdown
         label={"Tipo de chocolate"}
-        options={chocTypeOptions}
-        //value={chocType}
-        //onChange={handleTypeChange}
+        options={[
+          ...new Set(chocTypeOptions.map((option) => option.chocolateType)),
+        ]}
       />
 
       <Dropdown
         label={"Peso"}
-        options={weightTypeOptions}
-        //value={chocWeight}
-        //onChange={handleWeightChange}
+        options={[...new Set(chocTypeOptions.map((option) => option.weight))]}
       />
       <Input labelText={"Cantidad"} type="number" min="1" />
     </div>
