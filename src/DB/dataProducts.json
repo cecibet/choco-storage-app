@@ -136,41 +136,5 @@
       "unitPrice": 500,
       "stock": 2
     }
-  ],
-  "productTypes": [
-    "Huevo de pascua",
-    "Chocolate en barra",
-    "Chocolate en rama"
-  ],
-  "chocTypes": {
-    "eggTypes": [
-      "Blanco",
-      "Negro"
-    ],
-    "barTypes": [
-      "Maní",
-      "Amargo",
-      "Leche"
-    ],
-    "flakeTypes": [
-      "Blanco",
-      "Negro"
-    ]
-  },
-  "weightTypes": {
-    "eggWeights": [
-      "70g",
-      "110g"
-    ],
-    "barWeights": [
-      "70g",
-      "160g",
-      "180g",
-      "300g"
-    ],
-    "flakeWeights": [
-      "70g",
-      "160g"
-    ]
-  }
+  ]
 }

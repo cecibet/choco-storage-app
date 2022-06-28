@@ -1,32 +1,32 @@
-import TableData from "../.././../DB/dataProducts.json";
-import styles from "./table.module.css"
-const SellsTable = () => {
-  const column = Object.keys(TableData[0]);
+import styles from "./table.module.css";
+const SellsTable = ({ products }) => {
+  if (products.length) {
+    const column = Object.keys(products[0]);
+    const ThData = () => {
+      return column.map((data) => {
+        return <th key={data.productId}>{data}</th>;
+      });
+    };
 
-  const ThData = () => {
-    return column.map((data) => {
-      return <th key={data}>{data}</th>;
-    });
-  };
-
-  const tdData = () => {
-    return TableData.map((data) => {
-      return (
-        <tr>
-          {column.map((v) => {
-            return <td>{data[v]}</td>;
-          })}
-        </tr>
-      );
-    });
-  };
-  return (
-    <table className={styles.sellTable}>
-      <thead>
-        <tr>{ThData()}</tr>
-      </thead>
-      <tbody>{tdData()}</tbody>
-    </table>
-  );
+    const tdData = () => {
+      return products.map((data) => {
+        return (
+          <tr>
+            {column.map((v) => {
+              return <td>{data[v]}</td>;
+            })}
+          </tr>
+        );
+      });
+    };
+    return (
+      <table className={styles.sellTable}>
+        <thead>
+          <tr>{ThData()}</tr>
+        </thead>
+        <tbody>{tdData()}</tbody>
+      </table>
+    );
+  }
 };
 export default SellsTable;
