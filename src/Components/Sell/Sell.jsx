@@ -1,60 +1,74 @@
+import { useEffect } from "react";
 import { useState } from "react";
 import Dropdown from "../SharedComponents/Dropdown/Dropdown";
 import Input from "../SharedComponents/InputBox/InputBox";
 import styles from "./sell.module.css";
-const productsData = require("../../DB/productsData.json");
-const dataProducts = require("../../DB/dataProducts.json");
+// const productsData = require("../../DB/productsData.json");
+// const dataProducts = require("../../DB/dataProducts.json");
 
 const Sell = () => {
   const [sell, setSell] = useState(true);
   const [prodType, setProductType] = useState("");
   const [chocTypeOptions, setChocTypeOptions] = useState([]);
   const [weightTypeOptions, setWeightTypeOptions] = useState([]);
+  const [dataProducts, setDataProducts] = useState({});
 
-  const productTypes = [...new Set(dataProducts.map((e) => e.productType))];
-  console.log(productTypes);
+  useEffect(() => {
+    fetch("http://localhost:3000/products")
+      .then((res) => res.json())
+      .then((res) => {
+        console.log(res);
+        setDataProducts(res);
+      });
+    // formatData();
+  }, []);
 
-  const eggTypesjson = dataProducts.filter(function (item) {
-    return item.productType === "Huevo de Pascua";
-  });
-  const eggChocTypes = [...new Set(eggTypesjson.map((e) => e.chocolateType))];
-  const eggWeightTypes = [...new Set(eggTypesjson.map((e) => e.weight))];
+  //   const formatData = () => {
+  //     const productTypes = [...new Set(dataProducts.map((e) => e.productType))];
+  //     console.log(productTypes);
 
-  const barTypesjson = dataProducts.filter(function (item) {
-    return item.productType === "Chocolate en Barra";
-  });
-  const barChocTypes = [...new Set(barTypesjson.map((e) => e.chocolateType))];
-  const barWeightTypes = [...new Set(barTypesjson.map((e) => e.weight))];
+  //     const eggTypesjson = dataProducts.filter(function (item) {
+  //       return item.productType === "Huevo de Pascua";
+  //     });
+  //     const eggChocTypes = [...new Set(eggTypesjson.map((e) => e.chocolateType))];
+  //     const eggWeightTypes = [...new Set(eggTypesjson.map((e) => e.weight))];
 
-  const flakeTypesjson = dataProducts.filter(function (item) {
-    return item.productType === "Chocolate en Rama";
-  });
-  const flakeChocTypes = [
-    ...new Set(flakeTypesjson.map((e) => e.chocolateType)),
-  ];
-  const flakeWeightTypes = [...new Set(flakeTypesjson.map((e) => e.weight))];
+  //     const barTypesjson = dataProducts.filter(function (item) {
+  //       return item.productType === "Chocolate en Barra";
+  //     });
+  //     const barChocTypes = [...new Set(barTypesjson.map((e) => e.chocolateType))];
+  //     const barWeightTypes = [...new Set(barTypesjson.map((e) => e.weight))];
 
-  const handleProductChange = (e) => {
-    // eslint-disable-next-line default-case
-    switch (e.target.value) {
-      case "Huevo de pascua": {
-        setChocTypeOptions(eggChocTypes);
-        setWeightTypeOptions(eggWeightTypes);
-        break;
-      }
-      case "Chocolate en barra": {
-        setChocTypeOptions(barChocTypes);
-        setWeightTypeOptions(barWeightTypes);
-        break;
-      }
-      case "Chocolate en rama": {
-        setChocTypeOptions(flakeChocTypes);
-        setWeightTypeOptions(flakeWeightTypes);
-        break;
-      }
-    }
-    setProductType(e.target.value);
-  };
+  //     const flakeTypesjson = dataProducts.filter(function (item) {
+  //       return item.productType === "Chocolate en Rama";
+  //     });
+  //     const flakeChocTypes = [
+  //       ...new Set(flakeTypesjson.map((e) => e.chocolateType)),
+  //     ];
+  //     const flakeWeightTypes = [...new Set(flakeTypesjson.map((e) => e.weight))];
+  //   };
+
+  //   const handleProductChange = (e) => {
+  //     // eslint-disable-next-line default-case
+  //     switch (e.target.value) {
+  //       case "Huevo de pascua": {
+  //         setChocTypeOptions(eggChocTypes);
+  //         setWeightTypeOptions(eggWeightTypes);
+  //         break;
+  //       }
+  //       case "Chocolate en barra": {
+  //         setChocTypeOptions(barChocTypes);
+  //         setWeightTypeOptions(barWeightTypes);
+  //         break;
+  //       }
+  //       case "Chocolate en rama": {
+  //         setChocTypeOptions(flakeChocTypes);
+  //         setWeightTypeOptions(flakeWeightTypes);
+  //         break;
+  //       }
+  //     }
+  //     setProductType(e.target.value);
+  //   };
 
   const sellHandler = () => {
     setSell(!sell);
@@ -64,9 +78,9 @@ const Sell = () => {
     <div className={styles.sellContainer}>
       <Dropdown
         label={"Tipo de producto"}
-        options={productsData.productTypes}
+        options={dataProducts.productTypes}
         //value={prodType}
-        onChange={handleProductChange}
+        // onChange={handleProductChange}
       />
       <Dropdown
         label={"Tipo de chocolate"}
