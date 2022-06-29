@@ -117,6 +117,7 @@ const Sell = () => {
           "unitPrice",
           "cantidad",
         ]}
+        setData={setProductInOrder}
       />
     </div>
   );

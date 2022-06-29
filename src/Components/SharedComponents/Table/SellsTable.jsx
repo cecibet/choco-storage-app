@@ -1,5 +1,27 @@
 import styles from "./table.module.css";
-const SellsTable = ({ headers, data, rowInputs }) => {
+import { useState } from "react";
+
+const SellsTable = ({ headers, data, rowInputs, setData }) => {
+  const [readOnly, setReadOnly] = useState(true);
+  const [currentItem, setCurrentItem] = useState({});
+  const [warning, setWarning] = useState(false);
+
+  const handleClick = () => {
+    readOnly ? setReadOnly(false) : setReadOnly(true);
+  };
+
+  const handleDelete = (e) => {
+    const filteredData = data.filter(
+      (item) => item.productId.toString() !== e.target.value
+    );
+    setData(filteredData);
+  };
+
+  const handleChange = (e) => {
+    console.log("event onchange", e.target.value);
+    console.log("current item", currentItem.stock);
+    e.target.value > currentItem.stock ? setWarning(true) : setWarning(true);
+  };
   return (
     <div>
       <table className={styles.SellsTable}>
@@ -16,22 +38,29 @@ const SellsTable = ({ headers, data, rowInputs }) => {
             return (
               <tr key={index}>
                 {rowInputs.map((rowInput, i) => {
-                  return rowInput==='cantidad'? <input type='number' min='1' defaultValue={row[rowInput]} ></input> : <td key={i}>{row[rowInput]}</td>;
+                  return rowInput === "cantidad" ? (
+                    <>
+                      <input
+                        type="number"
+                        min="1"
+                        defaultValue={row[rowInput]}
+                        readOnly={readOnly}
+                        onClick={() => {
+                          setCurrentItem(row);
+                        }}
+                        onChange={handleChange}
+                      ></input>
+                      {warning && <p>No hay stock Suficiente</p>}
+                      <button onClick={handleClick}>
+                        {readOnly ? "Modificar" : "Ok"}
+                      </button>
+                    </>
+                  ) : (
+                    <td key={i}>{row[rowInput]}</td>
+                  );
                 })}
                 <td>
-                  <button
-                  // type={styles.stylesBtn}
-                  // handleClick={() => handleEdit(row._id)}
-                  >
-                    Edit
-                  </button>
-                  <button
-                  // type={styles.stylesBtn}
-                  // handleClick={() => {
-                  //   setIsOpen(true);
-                  //   setRow(row._id);
-                  // }}
-                  >
+                  <button value={row.productId} onClick={handleDelete}>
                     Delete
                   </button>
                 </td>
