@@ -1,13 +1,28 @@
 import styles from "./table.module.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import TableInput from "../Table Input/TableInput";
 
 const SellsTable = ({ headers, data, rowInputs, setData }) => {
-  const [readOnly, setReadOnly] = useState(true);
+  const [readOnly, setReadOnly] = useState({});
+  const [isReadOnly, setIsReadOnly] = useState(true);
   const [currentItem, setCurrentItem] = useState({});
   const [warning, setWarning] = useState(false);
+  const [currentRow, setCurrentRow] = useState("");
 
-  const handleClick = () => {
-    readOnly ? setReadOnly(false) : setReadOnly(true);
+  const handleClick = (e) => {
+    console.log("current id", e.target.id);
+    setCurrentRow(e.target.id);
+    if (readOnly[e.target.id]) {
+      if (readOnly[e.target.id] === true) {
+        setReadOnly({ ...readOnly, [e.target.id]: false });
+      } else {
+        setReadOnly({ ...readOnly, [e.target.id]: true });
+      }
+    } else {
+      setReadOnly({ ...readOnly, [e.target.id]: true });
+    }
+    console.log("readOnly", readOnly);
+    // readOnly ? setReadOnly(false) : setReadOnly(true);
   };
 
   const handleDelete = (e) => {
@@ -40,19 +55,20 @@ const SellsTable = ({ headers, data, rowInputs, setData }) => {
                 {rowInputs.map((rowInput, i) => {
                   return rowInput === "cantidad" ? (
                     <>
-                      <input
-                        type="number"
-                        min="1"
+                      <TableInput
+                        id={index}
+                        warningMsg={warning}
                         defaultValue={row[rowInput]}
                         readOnly={readOnly}
                         onClick={() => {
                           setCurrentItem(row);
                         }}
                         onChange={handleChange}
-                      ></input>
-                      {warning && <p>No hay stock Suficiente</p>}
-                      <button onClick={handleClick}>
-                        {readOnly ? "Modificar" : "Ok"}
+                      />
+                      <button id={index} onClick={handleClick}>
+                        {currentRow === index.toString() && readOnly[currentRow]
+                          ? "Modificar"
+                          : "Ok"}
                       </button>
                     </>
                   ) : (
