@@ -172,5 +172,31 @@
       "70g",
       "160g"
     ]
-  }
+  },
+  "users": [
+    {
+      "id": 100,
+      "username": "lucas",
+      "password": "lukedelo",
+      "superAdmin": false,
+      "name": "Lucas",
+      "description": "employee"
+    },
+    {
+      "id": 101,
+      "username": "cecilia",
+      "password": "cecibet",
+      "superAdmin": false,
+      "name": "Cecilia",
+      "description": "employee"
+    },     
+    {
+      "id": 200,
+      "username": "fabrizio",
+      "password": "kickpaste",
+      "superAdmin": true,
+      "name": "Fabrizio",
+      "description": "manager"
+    }
+  ]
 }

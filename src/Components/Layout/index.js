@@ -4,15 +4,14 @@ import Sell from "../Sell/Sell";
 import Header from "../Header/Header";
 import Menu from "../Navbar/Menu/Menu";
 import styles from "./index.module.css"
+import Login from "../../LoginForm/Login";
 
 const Layout = () => {
     return (
         <div className={styles.layoutContainer}>
-            <Header />
-            <Menu />
+
             <Routes>
-                <Route path="/Sell" element={<Sell />} />
-                <Route path="/" element={<Navigate replace to="/Sell" />}></Route>
+                <Route path="/Login" element={<Login />} />
             </Routes>
         </div>
     )
