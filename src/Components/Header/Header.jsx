@@ -6,7 +6,7 @@ const Header = () => {
   return (
     <div className={styles.hdrContainer}>
       <Logo />
-      <Button btnText="Login" />
+      <Button btnText="Logout" onClick={Logout()}/>
     </div>
   );
 };

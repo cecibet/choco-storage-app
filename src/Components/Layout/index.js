@@ -9,9 +9,13 @@ import Login from "../../LoginForm/Login";
 const Layout = () => {
     return (
         <div className={styles.layoutContainer}>
-
             <Routes>
                 <Route path="/Login" element={<Login />} />
+            </Routes>
+            <Header />
+            <Menu />
+            <Routes>
+                <Route path="/Sell" element={<Sell />} />
             </Routes>
         </div>
     )
