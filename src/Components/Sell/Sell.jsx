@@ -47,10 +47,14 @@ const Sell = () => {
     setSell(!sell);
   };
 
+  const checkStock = (stock, quantity) => {
+    return stock >= quantity;
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!e.target[0].value || !e.target[1].value || !e.target[2].value) {
-      alert("Agregue un producto");
+    if (!e.target[0].value || !e.target[1].value || !e.target[2].value || !e.target[3].value) {
+      alert("Complete todos los campos");
     } else {
       const productFound = dataProducts.find(
         (item) =>
@@ -58,17 +62,14 @@ const Sell = () => {
           item.chocolateType === e.target[1].value &&
           item.weight.toString() === e.target[2].value
       );
-      if (
-        productFound &&
-        !productInOrder.find((item) => item.productId === productFound.productId)
-      ) {
-        setProductInOrder([...productInOrder, productFound]);
-      } else {
-        alert("El producto ya fue cargado");
-      }
+      productFound &&
+      !productInOrder.find((item) => item.productId === productFound.productId)
+        ? checkStock(productFound.stock, e.target[3].value)
+          ? setProductInOrder([...productInOrder, productFound])
+          : alert("Stock insuficiente. Hay " + productFound.stock + " unidades")
+        : alert("Ya se cargó el producto");
     }
   };
-
   return (
     <div className={styles.sellContainer}>
       <form onSubmit={handleSubmit}>
@@ -87,7 +88,7 @@ const Sell = () => {
           label={"Peso"}
           options={[...new Set(chocTypeOptions.map((option) => option.weight))]}
         />
-        <Input labelText={"Cantidad"} type="number" min="1" />
+        <Input labelText={"Cantidad"} min="1" />
         <Button btnText="Agregar" type="submit" />
       </form>
       <SellsTable products={productInOrder} />
