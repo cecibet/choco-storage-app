@@ -81,47 +81,53 @@ const Sell = () => {
   return (
     <div className={styles.sellContainer}>
       <form onSubmit={handleSubmit}>
-        <Dropdown
-          label={"Tipo de producto"}
-          options={productTypes}
-          onChange={handleProductChange}
-        />
-        <Dropdown
-          label={"Tipo de chocolate"}
-          options={[
-            ...new Set(chocTypeOptions.map((option) => option.chocolateType)),
-          ]}
-        />
-        <Dropdown
-          label={"Peso"}
-          options={[...new Set(chocTypeOptions.map((option) => option.weight))]}
-        />
-        <Input labelText={"Cantidad"} min="1" />
-        <Button btnText="Agregar" type="submit" />
+        <div className={styles.sellOptions}>
+          {" "}
+          <Dropdown
+            label={"Tipo de producto"}
+            options={productTypes}
+            onChange={handleProductChange}
+          />
+          <Dropdown
+            label={"Tipo de chocolate"}
+            options={[
+              ...new Set(chocTypeOptions.map((option) => option.chocolateType)),
+            ]}
+          />
+          <Dropdown
+            label={"Peso"}
+            options={[
+              ...new Set(chocTypeOptions.map((option) => option.weight)),
+            ]}
+          />
+          <Input labelText={"Cantidad"} min="1" />
+        </div>
+        <Button className={styles.btn} btnText="Agregar" type="submit" />
       </form>
-      <SellsTable
-        data={productInOrder}
-        headers={[
-          "ID",
-          "Tipo de Producto",
-          "Tipo de Chocolate",
-          "Peso",
-          "Precio unitario",
-          "Cantidad",
-        ]}
-        rowInputs={[
-          "productId",
-          "productType",
-          "chocolateType",
-          "weight",
-          "unitPrice",
-          "cantidad",
-        ]}
-        setData={setProductInOrder}
-      />
+      {productInOrder.length > 0 && (
+        <SellsTable
+          data={productInOrder}
+          headers={[
+            "ID",
+            "Tipo de Producto",
+            "Tipo de Chocolate",
+            "Peso",
+            "Precio unitario",
+            "Cantidad",
+          ]}
+          rowInputs={[
+            "productId",
+            "productType",
+            "chocolateType",
+            "weight",
+            "unitPrice",
+            "cantidad",
+          ]}
+          setData={setProductInOrder}
+        />
+      )}
     </div>
   );
 };
 
 export default Sell;
-

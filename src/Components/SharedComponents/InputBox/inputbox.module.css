@@ -9,6 +9,7 @@
   font-size: 1.4em;
   text-align: center;
   margin-top: 40px;
+  
 }
 
 .labelInput {
@@ -19,7 +20,7 @@
 
 .inputContainer:focus {
   outline: none !important;
-  border: 1px solid #784fc3;
+  border: 2px solid #784fc3;
   box-shadow: rgb(226, 219, 226) 0px 1px 4px;
 }
 

@@ -24,7 +24,7 @@ const SellsTable = ({ headers, data, rowInputs, setData }) => {
   };
   return (
     <div>
-      <table className={styles.SellsTable}>
+      <table className={styles.sellTable}>
         <thead>
           <tr>
             {headers.map((header, index) => {
@@ -41,6 +41,7 @@ const SellsTable = ({ headers, data, rowInputs, setData }) => {
                   return rowInput === "cantidad" ? (
                     <>
                       <input
+                        className={styles.quantityInput}
                         type="number"
                         min="1"
                         defaultValue={row[rowInput]}
@@ -50,7 +51,7 @@ const SellsTable = ({ headers, data, rowInputs, setData }) => {
                         }}
                         onChange={handleChange}
                       ></input>
-                      {warning && <p>No hay stock Suficiente</p>}
+                      {warning && <p>Stock insuficiente</p>}
                       <button onClick={handleClick}>
                         {readOnly ? "Modificar" : "Ok"}
                       </button>
