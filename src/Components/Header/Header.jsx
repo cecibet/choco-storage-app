@@ -5,11 +5,14 @@ import styles from "../Header/header.module.css"
 import { useContext } from "react";
 
 const Header = () => {
-  const {logout} = useContext(UserContext)
+
+  const {logout, place} = useContext(UserContext)
+
+ 
   return (
     <div className={styles.hdrContainer}>
       <Logo />
-      <Button btnText="Logout" onClick={logout}/>
+      {place && <Button btnText="Logout" onClick={logout}/>}
     </div>
   );
 };
