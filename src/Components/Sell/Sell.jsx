@@ -48,13 +48,13 @@ const Sell = () => {
   };
 
   const checkStock = (stock, quantity) => {
-    return stock > quantity;
+    return stock >= quantity;
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!e.target[0].value || !e.target[1].value || !e.target[2].value) {
-      alert("Agregue un producto");
+    if (!e.target[0].value || !e.target[1].value || !e.target[2].value || !e.target[3].value) {
+      alert("Complete todos los campos");
     } else {
       const productFound = dataProducts.find(
         (item) =>
@@ -88,7 +88,7 @@ const Sell = () => {
           label={"Peso"}
           options={[...new Set(chocTypeOptions.map((option) => option.weight))]}
         />
-        <Input labelText={"Cantidad"}/>
+        <Input labelText={"Cantidad"} min="1" />
         <Button btnText="Agregar" type="submit" />
       </form>
       <SellsTable products={productInOrder} />

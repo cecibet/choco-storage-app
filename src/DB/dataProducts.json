@@ -135,6 +135,14 @@
       "weight": 160,
       "unitPrice": 500,
       "stock": 2
+    },
+    {
+      "productId": 18,
+      "productType": "Huevo de Pascua",
+      "chocolateType": "Blanco",
+      "weight": 110,
+      "unitPrice": 500,
+      "stock": 20
     }
   ]
 }
