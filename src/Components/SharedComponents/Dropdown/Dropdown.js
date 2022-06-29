@@ -9,7 +9,7 @@ const Dropdown = ({ options, onChange, label }) => {
       <label className={styles.label}>
         {label}
         <select onChange={onChange}>
-          <option disabled selected>
+          <option disabled selected value="">
             --Seleccione--
           </option>
           {options &&

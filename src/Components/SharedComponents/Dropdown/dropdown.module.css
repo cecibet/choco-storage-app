@@ -9,6 +9,7 @@
   box-shadow: rgb(226, 219, 226) 0px 1px 5px;
   background-color: #2d1659c4;
   z-index: 10;
+  margin-top: 30px;
 }
 .label {
   color: #d8d6dd;
