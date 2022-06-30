@@ -5,19 +5,13 @@ import Input from "../SharedComponents/InputBox/InputBox";
 import Button from "../SharedComponents/Button/Button";
 import SellsTable from "../SharedComponents/Table/SellsTable";
 import styles from "./sell.module.css";
+import stylesButton from "../SharedComponents/Button/button.module.css";
 
 const Sell = () => {
-  const [sell, setSell] = useState(true);
   const [chocTypeOptions, setChocTypeOptions] = useState([]);
   const [dataProducts, setDataProducts] = useState([]);
   const [productTypes, setProductTypes] = useState([]);
   const [productInOrder, setProductInOrder] = useState([]);
-  const [currentProduct, setCurrentProduct] = useState({
-    productType: "",
-    chocolateType: "",
-    weight: "",
-    cantidad: "",
-  });
 
   useEffect(() => {
     fetch("http://localhost:3000/products")
@@ -30,22 +24,10 @@ const Sell = () => {
       });
   }, []);
 
-  // useEffect(() => {
-  //   setCurrentProduct({
-  //     ...currentProduct,
-  //     chocolateType: chocTypeOptions.chocolateType,
-  //     weight: chocTypeOptions.weight,
-  //   });
-  // }, [productInOrder]);
-
   const handleProductChange = (e) => {
     setChocTypeOptions(
       dataProducts.filter((product) => product.productType === e.target.value)
     );
-    // setCurrentProduct({ ...currentProduct, productType: e.target.value });
-  };
-  const sellHandler = () => {
-    setSell(!sell);
   };
 
   const checkStock = (stock, quantity) => {
@@ -77,7 +59,7 @@ const Sell = () => {
         : alert("Ya se cargó el producto");
     }
   };
-  console.log("typeof productInorder", productInOrder);
+
   return (
     <div className={styles.sellContainer}>
       <form onSubmit={handleSubmit}>
@@ -102,7 +84,11 @@ const Sell = () => {
           />
           <Input labelText={"Cantidad"} min="1" />
         </div>
-        <Button className={styles.btn} btnText="Agregar" type="submit" />
+        <Button
+          className={styles.btn}
+          btnText="Agregar"
+          type="submit"
+        />
       </form>
       {productInOrder.length > 0 && (
         <SellsTable

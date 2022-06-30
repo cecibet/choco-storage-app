@@ -57,7 +57,7 @@ export default function LoginForm() {
     <div>
       <div className="login">
         <div className="login-form">
-          {isSubmited ? <Navigate to="/Sell" replace={true} /> : render}
+          {isSubmited ? <Navigate to="/Home" replace={true} /> : render}
         </div>
       </div>
     </div>

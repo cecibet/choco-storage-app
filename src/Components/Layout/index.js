@@ -7,19 +7,23 @@ import styles from "./index.module.css";
 import LoginForm from "../../LoginForm/LoginForm";
 import UserProvider from "../Context/AuthContext";
 import ErrorPage from "../ErrorPage/ErrorPage";
+import Home from "../Home/Home";
 
 const Layout = () => {
-
   return (
     <div className={styles.layoutContainer}>
       <UserProvider>
         <Header />
         <Menu />
         <Routes>
+          <Route path="/Home" element={<Home />} />
           <Route path="/Sell" element={<Sell />} />
           <Route path="/Login" element={<LoginForm />} />
-          <Route path="/" element={<Navigate replace= {true} to="/Login" />}></Route>
-          <Route path= "*" element={ <ErrorPage />}></Route>
+          <Route
+            path="/"
+            element={<Navigate replace={true} to="/Login" />}
+          ></Route>
+          <Route path="*" element={<ErrorPage />}></Route>
         </Routes>
       </UserProvider>
     </div>

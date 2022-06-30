@@ -3,19 +3,31 @@ import styles from "./menu.module.css";
 import Button from "../../SharedComponents/Button/Button";
 import { useContext } from "react";
 import { UserContext } from "../../Context/AuthContext";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-const Menu = ({ sell, sellHandler }) => {
+const Menu = () => {
+  const { place } = useContext(UserContext);
+  const [sell, setSell] = useState(true);
 
-  const {place} = useContext(UserContext)
+  const navigate = useNavigate();
 
+  const sellHandler = () => {
+    setSell(!sell);
+    if (!sell) {
+      navigate("/Home", { replace: true });
+    } else {
+      navigate("/Sell", { replace: true });
+    }
+  };
 
-    return (
-      <div className={styles.menu}>
-        {place && <Button btnText={"Cargar compra"} />}
-        {place && <Button btnText={"Venta"} onClick={sellHandler} />}
-        {place && <Button btnText={"Ver Stock"} />}
-      </div>
-    );
+  return (
+    <div className={styles.menu}>
+      {place && <Button btnText={"Cargar compra"} />}
+      {place && <Button btnText={"Venta"} onClick={sellHandler} />}
+      {place && <Button btnText={"Ver Stock"} />}
+    </div>
+  );
 };
 
 export default Menu;
