@@ -3,7 +3,7 @@ import { useState } from "react";
 import Dropdown from "../SharedComponents/Dropdown/Dropdown";
 import Input from "../SharedComponents/InputBox/InputBox";
 import Button from "../SharedComponents/Button/Button";
-import SellsTable from "../SharedComponents/Table/Table";
+import SellsTable from "../SharedComponents/Table/SellsTable";
 import styles from "./sell.module.css";
 
 const Sell = () => {
@@ -12,11 +12,12 @@ const Sell = () => {
   const [dataProducts, setDataProducts] = useState([]);
   const [productTypes, setProductTypes] = useState([]);
   const [productInOrder, setProductInOrder] = useState([]);
-  // const [currentProduct, setCurrentProduct] = useState({
-  //   productType: "",
-  //   chocolateType: "",
-  //   weight: "",
-  // });
+  const [currentProduct, setCurrentProduct] = useState({
+    productType: "",
+    chocolateType: "",
+    weight: "",
+    cantidad: "",
+  });
 
   useEffect(() => {
     fetch("http://localhost:3000/products")
@@ -53,7 +54,12 @@ const Sell = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!e.target[0].value || !e.target[1].value || !e.target[2].value || !e.target[3].value) {
+    if (
+      !e.target[0].value ||
+      !e.target[1].value ||
+      !e.target[2].value ||
+      !e.target[3].value
+    ) {
       alert("Complete todos los campos");
     } else {
       const productFound = dataProducts.find(
@@ -62,6 +68,7 @@ const Sell = () => {
           item.chocolateType === e.target[1].value &&
           item.weight.toString() === e.target[2].value
       );
+      productFound["cantidad"] = e.target[3].value;
       productFound &&
       !productInOrder.find((item) => item.productId === productFound.productId)
         ? checkStock(productFound.stock, e.target[3].value)
@@ -70,28 +77,55 @@ const Sell = () => {
         : alert("Ya se cargó el producto");
     }
   };
+  console.log("typeof productInorder", productInOrder);
   return (
     <div className={styles.sellContainer}>
       <form onSubmit={handleSubmit}>
-        <Dropdown
-          label={"Tipo de producto"}
-          options={productTypes}
-          onChange={handleProductChange}
-        />
-        <Dropdown
-          label={"Tipo de chocolate"}
-          options={[
-            ...new Set(chocTypeOptions.map((option) => option.chocolateType)),
-          ]}
-        />
-        <Dropdown
-          label={"Peso"}
-          options={[...new Set(chocTypeOptions.map((option) => option.weight))]}
-        />
-        <Input labelText={"Cantidad"} min="1" />
-        <Button btnText="Agregar" type="submit" />
+        <div className={styles.sellOptions}>
+          {" "}
+          <Dropdown
+            label={"Tipo de producto"}
+            options={productTypes}
+            onChange={handleProductChange}
+          />
+          <Dropdown
+            label={"Tipo de chocolate"}
+            options={[
+              ...new Set(chocTypeOptions.map((option) => option.chocolateType)),
+            ]}
+          />
+          <Dropdown
+            label={"Peso"}
+            options={[
+              ...new Set(chocTypeOptions.map((option) => option.weight)),
+            ]}
+          />
+          <Input labelText={"Cantidad"} min="1" />
+        </div>
+        <Button className={styles.btn} btnText="Agregar" type="submit" />
       </form>
-      <SellsTable products={productInOrder} />
+      {productInOrder.length > 0 && (
+        <SellsTable
+          data={productInOrder}
+          headers={[
+            "ID",
+            "Tipo de Producto",
+            "Tipo de Chocolate",
+            "Peso",
+            "Precio unitario",
+            "Cantidad",
+          ]}
+          rowInputs={[
+            "productId",
+            "productType",
+            "chocolateType",
+            "weight",
+            "unitPrice",
+            "cantidad",
+          ]}
+          setData={setProductInOrder}
+        />
+      )}
     </div>
   );
 };
