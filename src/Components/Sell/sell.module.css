@@ -1,8 +1,17 @@
 .sellContainer {
-    text-align: center;
-    align-items: center;
-    justify-content: center;
-    gap: 25px;
-    display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  gap: 25px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
 
-  }
+.sellOptions {
+  display: flex ;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-bottom: 40px;
+  gap: 25px;
+}

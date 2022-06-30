@@ -12,12 +12,20 @@
       "productId": 2,
       "productType": "Huevo de Pascua",
       "chocolateType": "Blanco",
+      "weight": 110,
+      "unitPrice": 400,
+      "stock": 20
+    },
+    {
+      "productId": 3,
+      "productType": "Huevo de Pascua",
+      "chocolateType": "Blanco",
       "weight": 190,
       "unitPrice": 500,
       "stock": 20
     },
     {
-      "productId": 3,
+      "productId": 4,
       "productType": "Huevo de Pascua",
       "chocolateType": "Negro",
       "weight": 70,
@@ -25,63 +33,71 @@
       "stock": 20
     },
     {
-      "productId": 4,
+      "productId": 5,
       "productType": "Huevo de Pascua",
       "chocolateType": "Negro",
       "weight": 110,
-      "unitPrice": 500,
+      "unitPrice": 400,
       "stock": 20
     },
     {
-      "productId": 5,
-      "productType": "Chocolate en Barra",
-      "chocolateType": "Amargo",
-      "weight": 120,
-      "unitPrice": 400,
-      "stock": 4
-    },
-    {
       "productId": 6,
-      "productType": "Chocolate en Barra",
-      "chocolateType": "Amargo",
-      "weight": 180,
-      "unitPrice": 600,
+      "productType": "Huevo de Pascua",
+      "chocolateType": "Negro",
+      "weight": 190,
+      "unitPrice": 500,
       "stock": 20
     },
     {
       "productId": 7,
       "productType": "Chocolate en Barra",
       "chocolateType": "Amargo",
-      "weight": 300,
-      "unitPrice": 750,
-      "stock": 20
-    },
-    {
-      "productId": 8,
-      "productType": "Chocolate en Barra",
-      "chocolateType": "Mani",
       "weight": 120,
       "unitPrice": 400,
       "stock": 4
     },
     {
-      "productId": 9,
+      "productId": 8,
       "productType": "Chocolate en Barra",
-      "chocolateType": "Mani",
+      "chocolateType": "Amargo",
       "weight": 180,
       "unitPrice": 600,
+      "stock": 20
+    },
+    {
+      "productId": 9,
+      "productType": "Chocolate en Barra",
+      "chocolateType": "Amargo",
+      "weight": 300,
+      "unitPrice": 750,
       "stock": 20
     },
     {
       "productId": 10,
       "productType": "Chocolate en Barra",
       "chocolateType": "Mani",
+      "weight": 120,
+      "unitPrice": 400,
+      "stock": 4
+    },
+    {
+      "productId": 11,
+      "productType": "Chocolate en Barra",
+      "chocolateType": "Mani",
+      "weight": 180,
+      "unitPrice": 600,
+      "stock": 20
+    },
+    {
+      "productId": 12,
+      "productType": "Chocolate en Barra",
+      "chocolateType": "Mani",
       "weight": 300,
       "unitPrice": 750,
       "stock": 20
     },
     {
-      "productId": 11,
+      "productId": 13,
       "productType": "Chocolate en Barra",
       "chocolateType": "Leche",
       "weight": 120,
@@ -89,7 +105,7 @@
       "stock": 4
     },
     {
-      "productId": 12,
+      "productId": 14,
       "productType": "Chocolate en Barra",
       "chocolateType": "Leche",
       "weight": 180,
@@ -97,7 +113,7 @@
       "stock": 20
     },
     {
-      "productId": 13,
+      "productId": 15,
       "productType": "Chocolate en Barra",
       "chocolateType": "Leche",
       "weight": 300,
@@ -105,7 +121,7 @@
       "stock": 20
     },
     {
-      "productId": 14,
+      "productId": 16,
       "productType": "Chocolate en Rama",
       "chocolateType": "Blanco",
       "weight": 70,
@@ -113,7 +129,7 @@
       "stock": 10
     },
     {
-      "productId": 15,
+      "productId": 17,
       "productType": "Chocolate en Rama",
       "chocolateType": "Blanco",
       "weight": 160,
@@ -121,7 +137,7 @@
       "stock": 20
     },
     {
-      "productId": 16,
+      "productId": 18,
       "productType": "Chocolate en Rama",
       "chocolateType": "Negro",
       "weight": 70,
@@ -129,7 +145,7 @@
       "stock": 20
     },
     {
-      "productId": 17,
+      "productId": 19,
       "productType": "Chocolate en Rama",
       "chocolateType": "Negro",
       "weight": 160,
@@ -137,42 +153,7 @@
       "stock": 2
     }
   ],
-  "productTypes": [
-    "Huevo de pascua",
-    "Chocolate en barra",
-    "Chocolate en rama"
-  ],
-  "chocTypes": {
-    "eggTypes": [
-      "Blanco",
-      "Negro"
-    ],
-    "barTypes": [
-      "Maní",
-      "Amargo",
-      "Leche"
-    ],
-    "flakeTypes": [
-      "Blanco",
-      "Negro"
-    ]
-  },
-  "weightTypes": {
-    "eggWeights": [
-      "70g",
-      "110g"
-    ],
-    "barWeights": [
-      "70g",
-      "160g",
-      "180g",
-      "300g"
-    ],
-    "flakeWeights": [
-      "70g",
-      "160g"
-    ]
-  },
+  
   "users": [
     {
       "id": 100,
@@ -200,3 +181,4 @@
     }
   ]
 }
+

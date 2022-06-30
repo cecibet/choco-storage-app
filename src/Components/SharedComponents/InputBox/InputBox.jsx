@@ -5,7 +5,7 @@ const InputBox = ({ labelText }) => {
   return (
     <div >
       <label className={styles.labelInput}>{labelText}</label>
-      <input className={styles.inputContainer}></input>
+      <input className={styles.inputContainer} type="number" min="1"></input>
     </div>
   );
 };

@@ -2,12 +2,14 @@
   color:rgb(26, 26, 26);
   border-radius: px;
   background-color: gray;
-  box-shadow: rgb(229, 226, 229) 0px 1px 3px;
+  box-shadow: rgb(219, 218, 219) 0px 1px 3px;
   border: none;
   height: 10.5vh;
   width: 7vh;
   font-size: 1.4em;
   text-align: center;
+  margin-top: 40px;
+  
 }
 
 .labelInput {
@@ -18,7 +20,7 @@
 
 .inputContainer:focus {
   outline: none !important;
-  border: 1px solid #784fc3;
+  border: 2px solid #784fc3;
   box-shadow: rgb(226, 219, 226) 0px 1px 4px;
 }
 
