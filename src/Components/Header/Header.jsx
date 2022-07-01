@@ -1,12 +1,18 @@
 import Button from "../SharedComponents/Button/Button";
 import Logo from "../SharedComponents/Logo/Logo";
-import styles from "../Header/header.module.css";
+import { UserContext } from "../../Components/Context/AuthContext";
+import styles from "../Header/header.module.css"
+import { useContext } from "react";
 
 const Header = () => {
+
+  const {logout, place, currentUser} = useContext(UserContext)
+ 
   return (
     <div className={styles.hdrContainer}>
       <Logo />
-      <Button btnText="Login" />
+      {currentUser && <p>{currentUser.name}</p>}
+      {place && <Button btnText="Logout" onClick={logout}/>}
     </div>
   );
 };

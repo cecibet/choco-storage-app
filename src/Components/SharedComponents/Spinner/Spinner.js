@@ -1,5 +1,12 @@
 import "./Spinner.css";
+import { useNavigate } from "react-router-dom";
 
 export default function Spinner() {
-  return <div class="lds-dual-ring"><h2>CARGANDO</h2></div>;
+  const navigate = useNavigate();
+
+  setTimeout(() => {
+    navigate("/Home", { replace: true });
+  }, 2500);
+
+  return <div class="lds-dual-ring"></div>;
 }

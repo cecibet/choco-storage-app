@@ -12,7 +12,7 @@ const SellsTable = ({ headers, data, rowInputs, setData }) => {
 
   return (
     <div>
-      <table className={styles.SellsTable}>
+      <table className={styles.sellTable}>
         <thead>
           <tr>
             {headers.map((header, index) => {
