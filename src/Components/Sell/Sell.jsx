@@ -16,6 +16,8 @@ const Sell = () => {
   const [showModal, setShowModal] = useState(false);
   const [modalTitle, setModalTitle] = useState("");
   const [modalTxt, setModalTxt] = useState("");
+  const [regSell, setRegSell] = useState(false);
+  const [dataOk, setDataOk] = useState(true);
 
   useEffect(() => {
     fetch("http://localhost:3000/products")
@@ -80,6 +82,25 @@ const Sell = () => {
     }
   };
 
+  const sendSellHandler = () => {
+    console.log(productInOrder);
+    if (dataOk) {
+      setRegSell(true);
+      setShowModal(true);
+      setModalTitle("Atención!");
+      setModalTxt("Seguro que quiere registrar la venta?");
+    } else {
+      setRegSell(false);
+      setShowModal(true);
+      setModalTitle("Atención!");
+      setModalTxt("Aún no terminó de editar las cantidades");
+    }
+  };
+
+  const createSell = () => {
+    regSell(false);
+  };
+
   return (
     <div className={styles.sellContainer}>
       <form onSubmit={handleSubmit}>
@@ -107,26 +128,34 @@ const Sell = () => {
         <Button style={styles.btn} btnText="Agregar" type="submit" />
       </form>
       {productInOrder.length > 0 && (
-        <SellsTable
-          data={productInOrder}
-          headers={[
-            "ID",
-            "Tipo de Producto",
-            "Tipo de Chocolate",
-            "Peso",
-            "Precio unitario",
-            "Cantidad",
-          ]}
-          rowInputs={[
-            "productId",
-            "productType",
-            "chocolateType",
-            "weight",
-            "unitPrice",
-            "cantidad",
-          ]}
-          setData={setProductInOrder}
-        />
+        <>
+          <SellsTable
+            data={productInOrder}
+            headers={[
+              "ID",
+              "Tipo de Producto",
+              "Tipo de Chocolate",
+              "Peso",
+              "Precio unitario",
+              "Cantidad",
+            ]}
+            rowInputs={[
+              "productId",
+              "productType",
+              "chocolateType",
+              "weight",
+              "unitPrice",
+              "cantidad",
+            ]}
+            setData={setProductInOrder}
+            setDataOk={setDataOk}
+          />
+          <Button
+            onClick={sendSellHandler}
+            style={styles.btn}
+            btnText="Registrar venta"
+          />
+        </>
       )}
       <Modal showModal={showModal} closeModal={() => setShowModal(false)}>
         <h2>{modalTitle}</h2>
@@ -135,9 +164,24 @@ const Sell = () => {
           style={styles.btn}
           btnText={"Ok"}
           onClick={() => {
-            setShowModal(false);
+            if (regSell) {
+              createSell();
+            } else {
+              setShowModal(false);
+              setRegSell(false);
+            }
           }}
         />
+        {regSell && (
+          <Button
+            style={styles.btn}
+            btnText={"Cancel"}
+            onClick={() => {
+              setShowModal(false);
+              setRegSell(false);
+            }}
+          />
+        )}
       </Modal>
     </div>
   );
