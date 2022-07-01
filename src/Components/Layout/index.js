@@ -6,7 +6,6 @@ import Menu from "../Navbar/Menu/Menu";
 import styles from "./index.module.css";
 import LoginForm from "../../LoginForm/LoginForm";
 import UserProvider from "../Context/AuthContext";
-import ErrorPage from "../ErrorPage/ErrorPage";
 import Home from "../Home/Home";
 
 const Layout = () => {
@@ -23,7 +22,7 @@ const Layout = () => {
             path="/"
             element={<Navigate replace={true} to="/Login" />}
           ></Route>
-          <Route path="*" element={<ErrorPage />}></Route>
+          <Route path="*" element={<Home />}></Route>
         </Routes>
       </UserProvider>
     </div>

@@ -9,6 +9,7 @@ export default function UserProvider({ children }) {
 
   const [actualUser, setActualUser] = useState({});
   const [users, setUsers] = useState({});
+  const [products, setProducts] = useState([]);
   const [messageError, setMessageError] = useState("");
   const [isSubmited, setIsSubmited] = useState(false);
   const [place, setPlace] = useState(null);
@@ -21,24 +22,31 @@ export default function UserProvider({ children }) {
       });
   }, []);
 
+  useEffect(() => {
+    fetch("http://localhost:3000/products")
+      .then((res) => res.json())
+      .then((res) => {
+        setProducts(res);
+      });
+  }, []);
+
 
   const login = (user, pass) => {
     const _user = users.filter((us) => us.username === user && us.password === pass)
     setActualUser(_user);
-    if (!_user) {
+    if (_user.length <= 0) {
       setTimeout(() => {setMessageError("")}, 2000);
       setMessageError("usuario o contraseña invalida")
     }
-    if (_user) {
+    if (_user.length > 0) {
       setIsSubmited(true);
     } 
   };
 
   const logout = () => {
-    setUsers({});
     setIsSubmited(false);
     setPlace(null);
-    navigate("/Login", { replace: true });
+    navigate("/Login");
   };
 
 
@@ -52,7 +60,7 @@ export default function UserProvider({ children }) {
 
   return (
     <UserContext.Provider
-      value={{ login, logout, place, actualUser, messageError, isSubmited }}>
+      value={{ login, logout, place, actualUser, messageError, isSubmited, products }}>
       {children}
     </UserContext.Provider>
   );
