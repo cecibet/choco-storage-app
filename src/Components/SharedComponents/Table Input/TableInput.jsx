@@ -3,7 +3,7 @@ import Button from "../Button/Button";
 import Modal from "../Modal/Modal";
 import styles from "./tableInput.module.css";
 
-const TableInput = ({ rowItem, defaultValue, setData, data }) => {
+const TableInput = ({ rowItem, defaultValue, setData, data, setDataOk }) => {
   const [btnTxt, setBtnTxt] = useState("Modificar");
   const [readOnly, setReadOnly] = useState(true);
   const [warning, setWarning] = useState(false);
@@ -35,6 +35,7 @@ const TableInput = ({ rowItem, defaultValue, setData, data }) => {
 
   useEffect(() => {
     setBtnTxt(readOnly ? "Modificar" : "Guardar");
+    readOnly ? setDataOk(true) : setDataOk(false);
   }, [readOnly]);
 
   return (

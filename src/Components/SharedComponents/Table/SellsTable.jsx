@@ -1,7 +1,7 @@
 import styles from "./table.module.css";
 import TableInput from "../Table Input/TableInput";
 
-const SellsTable = ({ headers, data, rowInputs, setData }) => {
+const SellsTable = ({ headers, data, rowInputs, setData, setDataOk }) => {
   const handleDelete = (e) => {
     const filteredData = data.filter(
       (item) => item.productId.toString() !== e.target.value
@@ -30,6 +30,7 @@ const SellsTable = ({ headers, data, rowInputs, setData }) => {
                       setData={setData}
                       rowItem={row}
                       defaultValue={row[rowInput]}
+                      setDataOk ={setDataOk}
                     />
                   ) : (
                     <td key={i}>{row[rowInput]}</td>
