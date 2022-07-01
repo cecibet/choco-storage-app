@@ -1,3 +1,5 @@
+
+
 .sellTable {
   color: #d8d6dd;
   width: 800px;
@@ -5,7 +7,7 @@
   margin-top: 40px;
 }
 
-/* Zebra striping */
+
 tr:nth-of-type(odd) {
   background: rgb(68, 68, 68);
   border: 1px solid rgb(154, 151, 151);
@@ -31,6 +33,7 @@ th {
 
 tr[row="2"] {
   border-bottom: 10px double #000;
+ 
 }
 .quantityInput {
   background: rgb(46, 46, 46);
@@ -49,18 +52,14 @@ tr[row="2"] {
   box-shadow: rgb(226, 219, 226) 0px 1px 4px;
 }
 
-/* 
-Max width before this PARTICULAR table gets nasty
-This query will take effect for any screen smaller than 760px
-and also iPads specifically.
-*/
+
 @media only screen and (max-width: 760px),
   (min-device-width: 768px) and (max-device-width: 1024px) {
   table {
     width: 100%;
   }
 
-  /* Force table to not be like tables anymore */
+
   table,
   thead,
   tbody,
@@ -70,7 +69,7 @@ and also iPads specifically.
     display: block;
   }
 
-  /* Hide table headers (but not display: none;, for accessibility) */
+
   thead tr {
     position: absolute;
     top: -9999px;
@@ -82,7 +81,7 @@ and also iPads specifically.
   }
 
   td {
-    /* Behave  like a "row" */
+   
     border: none;
     border-bottom: 1px solid #eee;
     position: relative;
@@ -90,9 +89,8 @@ and also iPads specifically.
   }
 
   td:before {
-    /* Now like a table header */
+    
     position: absolute;
-    /* Top/left values mimic padding */
     top: 6px;
     left: 6px;
     width: 45%;

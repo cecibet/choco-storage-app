@@ -16,12 +16,11 @@
   gap: 25px;
 }
 .btn {
-  width: 25vh;
-  height: 8vh;
-  color: whitesmoke;
-  background-color: rgb(75, 48, 133);
-  font-size: 1.25em;
-  text-transform: uppercase;
+  width: 20vh;
+  height: 7vh;
+  color: rgb(33, 33, 33);
+  background-color: #c8c8c8f0;
+  font-size: 1.2em;
   text-shadow: rgba(0, 0, 0, 0.24) 0px 3px 5px;
   box-shadow: rgb(229, 226, 229) 0px 1px 3px;
   border-radius: 3px;
@@ -29,7 +28,7 @@
 }
 .btn:hover {
   cursor: pointer;
-  background-color: rgb(102, 57, 165);
+  background-color: #d5d6d6;
   box-shadow: rgb(229, 226, 229) 0px 1px 5px;
   transition: all 75ms ease-in-out;
 }

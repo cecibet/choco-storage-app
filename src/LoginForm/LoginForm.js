@@ -28,6 +28,7 @@ export default function LoginForm() {
         <div className="input-container">
           <label>Usuario </label>
           <input
+            className="inputBox"
             autoFocus
             type="text"
             name="Usuario"
@@ -39,6 +40,7 @@ export default function LoginForm() {
         <div className="input-container">
           <label>Contraseña </label>
           <input
+            className="inputBox"
             type="password"
             name="pass"
             value={pass}
@@ -48,7 +50,7 @@ export default function LoginForm() {
         </div>
         <p className="error">{messageError}</p>
         <div className="button-container">
-          <input type="submit" />
+          <input type="submit" value="Ingresar" />
         </div>
       </form>
     </div>

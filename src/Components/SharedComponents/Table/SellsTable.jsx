@@ -11,7 +11,7 @@ const SellsTable = ({ headers, data, rowInputs, setData }) => {
   };
 
   return (
-    <div>
+    <div className={styles.tableWrapper}>
       <table className={styles.sellTable}>
         <thead>
           <tr>

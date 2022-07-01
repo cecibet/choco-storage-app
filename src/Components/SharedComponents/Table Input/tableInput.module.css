@@ -1,20 +1,23 @@
 .btn {
-    width: 25vh;
-    height: 8vh;
+    width: 10vh;
+    height: 3vh;
     color: whitesmoke;
-    background-color: aqua;
-    font-size: 1.25em;
+    background-color: #803e88;
+    font-size: 0.75em;
     text-transform: uppercase;
     text-shadow: rgba(0, 0, 0, 0.24) 0px 3px 5px;
     box-shadow: rgb(229, 226, 229) 0px 1px 3px;
     border-radius: 3px;
     border: none;
+    margin-bottom: 4px;
   }
   .btn:hover {
     cursor: pointer;
-    background-color: rgb(102, 57, 165);
+    background-color: #bc7a41;
     box-shadow: rgb(229, 226, 229) 0px 1px 5px;
     transition: all 75ms ease-in-out;
   }
+
+
   
   
