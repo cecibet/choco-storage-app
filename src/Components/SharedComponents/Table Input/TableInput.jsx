@@ -44,7 +44,11 @@ const TableInput = ({ rowItem, defaultValue }) => {
           <p>{warning && "No hay suficiente stock"}</p>
         </div>
       )}
-      <Button style={styles.btn} btnText={btnTxt} onClick={clickHandler}></Button>
+      <Button
+        style={styles.btn}
+        btnText={btnTxt}
+        onClick={clickHandler}
+      ></Button>
       <Modal showModal={showModal} closeModal={() => setShowModal(false)}>
         <h2>No es posible modificar la cantidad</h2>
         <p>No hay stock disponible</p>

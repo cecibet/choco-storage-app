@@ -11,6 +11,7 @@
 .sellOptions {
   display: flex;
   flex-direction: row;
+  justify-content: center;
   flex-wrap: wrap;
   margin-bottom: 40px;
   gap: 25px;
@@ -19,16 +20,18 @@
   width: 20vh;
   height: 7vh;
   color: rgb(33, 33, 33);
-  background-color: #c8c8c8f0;
+  background-color: #774360;
   font-size: 1.2em;
   text-shadow: rgba(0, 0, 0, 0.24) 0px 3px 5px;
   box-shadow: rgb(229, 226, 229) 0px 1px 3px;
   border-radius: 3px;
+  text-transform: uppercase;
+  color: #d8d6dd;
   border: none;
 }
 .btn:hover {
   cursor: pointer;
-  background-color: #d5d6d6;
+  background-color: #945277;
   box-shadow: rgb(229, 226, 229) 0px 1px 5px;
   transition: all 75ms ease-in-out;
 }

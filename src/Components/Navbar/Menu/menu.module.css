@@ -3,7 +3,8 @@
   align-items: center;
   justify-content: center;
   gap: 25px;
-  margin-bottom: 50px;
+  margin-bottom: 40px;
+  margin-top: 40px;
 }
 .btn {
   width: 25vh;

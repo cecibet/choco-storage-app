@@ -1,5 +1,3 @@
-
-
 .sellTable {
   color: #d8d6dd;
   width: 800px;
@@ -51,6 +49,26 @@ tr[row="2"] {
   border: 2px solid #784fc3;
   box-shadow: rgb(226, 219, 226) 0px 1px 4px;
 }
+
+.btn {
+  width: 100%;
+  height: 3vh;
+  color: whitesmoke;
+  background-color: #774360;
+  font-size: 0.75em;
+  text-transform: uppercase;
+  box-shadow: rgb(229, 226, 229) 0px 1px 3px;
+  border-radius: 3px;
+  border: none;
+  margin-bottom: 4px;
+}
+.btn:hover {
+  cursor: pointer;
+  background-color: #945277;
+  box-shadow: rgb(229, 226, 229) 0px 1px 5px;
+  transition: all 75ms ease-in-out;
+}
+
 
 
 @media only screen and (max-width: 760px),

@@ -1,5 +1,6 @@
 import styles from "./table.module.css";
 import TableInput from "../Table Input/TableInput";
+import Button from "../Button/Button";
 
 const SellsTable = ({ headers, data, rowInputs, setData }) => {
 
@@ -33,9 +34,9 @@ const SellsTable = ({ headers, data, rowInputs, setData }) => {
                   );
                 })}
                 <td>
-                  <button value={row.productId} onClick={handleDelete}>
-                    Delete
-                  </button>
+                  <Button btnText={"Borrar"} style={styles.btn} value={row.productId} onClick={handleDelete}>
+        
+                  </Button>
                 </td>
               </tr>
             );

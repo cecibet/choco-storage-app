@@ -34,7 +34,7 @@ export default function LoginForm() {
             name="Usuario"
             value={user}
             onChange={userHandler}
-            required
+            
           />
         </div>
         <div className="input-container">
@@ -45,7 +45,7 @@ export default function LoginForm() {
             name="pass"
             value={pass}
             onChange={passHandler}
-            required
+            
           />
         </div>
         <p className="error">{messageError}</p>
