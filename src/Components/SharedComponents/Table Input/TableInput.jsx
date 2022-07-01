@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import Button from "../Button/Button";
 import Modal from "../Modal/Modal";
+import styles from "./tableInput.module.css";
 
 const TableInput = ({ rowItem, defaultValue }) => {
   const [btnTxt, setBtnTxt] = useState("Modificar");
@@ -43,11 +44,12 @@ const TableInput = ({ rowItem, defaultValue }) => {
           <p>{warning && "No hay suficiente stock"}</p>
         </div>
       )}
-      <Button btnText={btnTxt} onClick={clickHandler}></Button>
+      <Button style={styles.btn} btnText={btnTxt} onClick={clickHandler}></Button>
       <Modal showModal={showModal} closeModal={() => setShowModal(false)}>
         <h2>No es posible modificar la cantidad!</h2>
         <p>No hay stock disponible</p>
         <Button
+          style={styles.btn}
           btnText={"Ok"}
           onClick={() => {
             setShowModal(false);
