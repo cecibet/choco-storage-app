@@ -104,7 +104,7 @@ const Sell = () => {
           />
           <Input labelText={"Cantidad"} min="1" />
         </div>
-        <Button className={styles.btn} btnText="Agregar" type="submit" />
+        <Button style={styles.btn} btnText="Agregar" type="submit" />
       </form>
       {productInOrder.length > 0 && (
         <SellsTable
@@ -132,6 +132,7 @@ const Sell = () => {
         <h2>{modalTitle}</h2>
         <p>{modalTxt}</p>
         <Button
+          style={styles.btn}
           btnText={"Ok"}
           onClick={() => {
             setShowModal(false);

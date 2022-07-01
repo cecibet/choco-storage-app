@@ -23,9 +23,9 @@ const Menu = () => {
 
   return (
     <div className={styles.menu}>
-      {place && <Button btnText={"Cargar compra"} />}
-      {place && <Button btnText={"Venta"} onClick={sellHandler} />}
-      {place && <Button btnText={"Ver Stock"} />}
+      {place && <Button style={styles.btn} btnText={"Cargar compra"} />}
+      {place && <Button style={styles.btn} btnText={"Venta"} onClick={sellHandler} />}
+      {place && <Button style={styles.btn} btnText={"Ver Stock"} />}
     </div>
   );
 };
