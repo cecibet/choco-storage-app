@@ -5,6 +5,7 @@ import Input from "../SharedComponents/InputBox/InputBox";
 import Button from "../SharedComponents/Button/Button";
 import SellsTable from "../SharedComponents/Table/SellsTable";
 import styles from "./sell.module.css";
+import Modal from "../SharedComponents/Modal/Modal";
 
 const Sell = () => {
   const [sell, setSell] = useState(true);
@@ -12,12 +13,9 @@ const Sell = () => {
   const [dataProducts, setDataProducts] = useState([]);
   const [productTypes, setProductTypes] = useState([]);
   const [productInOrder, setProductInOrder] = useState([]);
-  const [currentProduct, setCurrentProduct] = useState({
-    productType: "",
-    chocolateType: "",
-    weight: "",
-    cantidad: "",
-  });
+  const [showModal, setShowModal] = useState(false);
+  const [modalTitle, setModalTitle] = useState("");
+  const [modalTxt, setModalTxt] = useState("");
 
   useEffect(() => {
     fetch("http://localhost:3000/products")
@@ -30,19 +28,10 @@ const Sell = () => {
       });
   }, []);
 
-  // useEffect(() => {
-  //   setCurrentProduct({
-  //     ...currentProduct,
-  //     chocolateType: chocTypeOptions.chocolateType,
-  //     weight: chocTypeOptions.weight,
-  //   });
-  // }, [productInOrder]);
-
   const handleProductChange = (e) => {
     setChocTypeOptions(
       dataProducts.filter((product) => product.productType === e.target.value)
     );
-    // setCurrentProduct({ ...currentProduct, productType: e.target.value });
   };
   const sellHandler = () => {
     setSell(!sell);
@@ -60,7 +49,9 @@ const Sell = () => {
       !e.target[2].value ||
       !e.target[3].value
     ) {
-      alert("Complete todos los campos");
+      setShowModal(true);
+      setModalTitle("Atención!");
+      setModalTxt("Complete todos los campos");
     } else {
       const productFound = dataProducts.find(
         (item) =>
@@ -69,12 +60,26 @@ const Sell = () => {
           item.weight.toString() === e.target[2].value
       );
       productFound["cantidad"] = e.target[3].value;
-      productFound &&
-      !productInOrder.find((item) => item.productId === productFound.productId)
-        ? checkStock(productFound.stock, e.target[3].value)
-          ? setProductInOrder([...productInOrder, productFound])
-          : alert("Stock insuficiente. Hay " + productFound.stock + " unidades")
-        : alert("Ya se cargó el producto");
+      if (
+        productFound &&
+        !productInOrder.find(
+          (item) => item.productId === productFound.productId
+        )
+      ) {
+        if (checkStock(productFound.stock, e.target[3].value)) {
+          setProductInOrder([...productInOrder, productFound]);
+        } else {
+          setShowModal(true);
+          setModalTitle("Atención!");
+          setModalTxt(
+            `Stock insuficiente. Quedan ${productFound.stock} unidades`
+          );
+        }
+      } else {
+        setShowModal(true);
+        setModalTitle("Atención!");
+        setModalTxt("El producto ya fue cargado");
+      }
     }
   };
   console.log("typeof productInorder", productInOrder);
@@ -119,9 +124,18 @@ const Sell = () => {
         ]}
         setData={setProductInOrder}
       />
+      <Modal showModal={showModal} closeModal={() => setShowModal(false)}>
+        <h2>{modalTitle}</h2>
+        <p>{modalTxt}</p>
+        <Button
+          btnText={"Ok"}
+          onClick={() => {
+            setShowModal(false);
+          }}
+        />
+      </Modal>
     </div>
   );
 };
 
 export default Sell;
-
