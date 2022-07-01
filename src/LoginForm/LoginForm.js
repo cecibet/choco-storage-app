@@ -2,9 +2,9 @@ import React, { useState, useContext } from "react";
 import { UserContext } from "../Components/Context/AuthContext";
 import { Navigate } from "react-router-dom";
 import "./LoginForm.css";
+import Spinner from "../Components/SharedComponents/Spinner/Spinner";
 
 export default function LoginForm() {
-  
   const { login, messageError, isSubmited } = useContext(UserContext);
 
   const [user, setUser] = useState("");
@@ -56,9 +56,7 @@ export default function LoginForm() {
   return (
     <div>
       <div className="login">
-        <div className="login-form">
-          {isSubmited ? <Navigate to="/Home" replace={true} /> : render}
-        </div>
+        <div className="login-form">{isSubmited ? <Spinner /> : render}</div>
       </div>
     </div>
   );
