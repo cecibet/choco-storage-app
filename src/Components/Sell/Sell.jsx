@@ -97,6 +97,10 @@ const Sell = () => {
     }
   };
 
+  const createSell = () => {
+    regSell(false);
+  };
+
   return (
     <div className={styles.sellContainer}>
       <form onSubmit={handleSubmit}>
@@ -160,8 +164,12 @@ const Sell = () => {
           style={styles.btn}
           btnText={"Ok"}
           onClick={() => {
-            setShowModal(false);
-            setRegSell(false);
+            if (regSell) {
+              createSell();
+            } else {
+              setShowModal(false);
+              setRegSell(false);
+            }
           }}
         />
         {regSell && (
