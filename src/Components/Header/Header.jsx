@@ -6,12 +6,12 @@ import { useContext } from "react";
 
 const Header = () => {
 
-  const {logout, place} = useContext(UserContext)
-
+  const {logout, place, currentUser} = useContext(UserContext)
  
   return (
     <div className={styles.hdrContainer}>
       <Logo />
+      {currentUser && <p>{currentUser.name}</p>}
       {place && <Button btnText="Logout" onClick={logout}/>}
     </div>
   );
