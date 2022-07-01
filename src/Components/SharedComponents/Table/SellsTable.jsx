@@ -2,14 +2,12 @@ import styles from "./table.module.css";
 import TableInput from "../Table Input/TableInput";
 
 const SellsTable = ({ headers, data, rowInputs, setData }) => {
-
   const handleDelete = (e) => {
     const filteredData = data.filter(
       (item) => item.productId.toString() !== e.target.value
     );
     setData(filteredData);
   };
-
   return (
     <div>
       <table className={styles.sellTable}>
@@ -27,7 +25,12 @@ const SellsTable = ({ headers, data, rowInputs, setData }) => {
               <tr key={index}>
                 {rowInputs.map((rowInput, i) => {
                   return rowInput === "cantidad" ? (
-                    <TableInput rowItem={row} defaultValue={row[rowInput]} />
+                    <TableInput
+                      data={data}
+                      setData={setData}
+                      rowItem={row}
+                      defaultValue={row[rowInput]}
+                    />
                   ) : (
                     <td key={i}>{row[rowInput]}</td>
                   );

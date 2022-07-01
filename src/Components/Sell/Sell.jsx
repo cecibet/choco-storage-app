@@ -80,6 +80,10 @@ const Sell = () => {
     }
   };
 
+  const sendSellHandler = () => {
+    console.log(productInOrder);
+  };
+
   return (
     <div className={styles.sellContainer}>
       <form onSubmit={handleSubmit}>
@@ -107,26 +111,33 @@ const Sell = () => {
         <Button style={styles.btn} btnText="Agregar" type="submit" />
       </form>
       {productInOrder.length > 0 && (
-        <SellsTable
-          data={productInOrder}
-          headers={[
-            "ID",
-            "Tipo de Producto",
-            "Tipo de Chocolate",
-            "Peso",
-            "Precio unitario",
-            "Cantidad",
-          ]}
-          rowInputs={[
-            "productId",
-            "productType",
-            "chocolateType",
-            "weight",
-            "unitPrice",
-            "cantidad",
-          ]}
-          setData={setProductInOrder}
-        />
+        <>
+          <SellsTable
+            data={productInOrder}
+            headers={[
+              "ID",
+              "Tipo de Producto",
+              "Tipo de Chocolate",
+              "Peso",
+              "Precio unitario",
+              "Cantidad",
+            ]}
+            rowInputs={[
+              "productId",
+              "productType",
+              "chocolateType",
+              "weight",
+              "unitPrice",
+              "cantidad",
+            ]}
+            setData={setProductInOrder}
+          />
+          <Button
+            onClick={sendSellHandler}
+            style={styles.btn}
+            btnText="Registrar venta"
+          />
+        </>
       )}
       <Modal showModal={showModal} closeModal={() => setShowModal(false)}>
         <h2>{modalTitle}</h2>
