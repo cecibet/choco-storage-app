@@ -1,10 +1,9 @@
 import { createContext, useState, useEffect } from "react";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export const UserContext = createContext({});
 
 export default function UserProvider({ children }) {
-
   const navigate = useNavigate();
 
   const [actualUser, setActualUser] = useState({});
@@ -30,38 +29,50 @@ export default function UserProvider({ children }) {
       });
   }, []);
 
-
   const login = (user, pass) => {
-    const _user = users.filter((us) => us.username === user && us.password === pass)
+    const _user = users.filter(
+      (us) => us.username === user && us.password === pass
+    );
     setActualUser(_user);
     if (_user.length <= 0) {
-      setTimeout(() => {setMessageError("")}, 2000);
-      setMessageError("usuario o contraseña invalida")
+      setTimeout(() => {
+        setMessageError("");
+      }, 2000);
+      setMessageError("usuario o contraseña invalida");
     }
     if (_user.length > 0) {
       setIsSubmited(true);
-    } 
+    }
   };
 
   const logout = () => {
     setIsSubmited(false);
     setPlace(null);
-    navigate("/Login");
+    navigate("/Login", { replace: true });
   };
 
-
-  if(document.location.pathname !== "/Login" 
-  && document.location.pathname !== "/" 
-  && document.location.pathname !== "*"
-  && place !== true){
-    setPlace(true)
-  };
-
+  if (
+    document.location.pathname !== "/Login" &&
+    document.location.pathname !== "/" &&
+    document.location.pathname !== "*" &&
+    place !== true
+  ) {
+    setPlace(true);
+  }
 
   return (
     <UserContext.Provider
-      value={{ login, logout, place, actualUser, messageError, isSubmited, products }}>
+      value={{
+        login,
+        logout,
+        place,
+        actualUser,
+        messageError,
+        isSubmited,
+        products,
+      }}
+    >
       {children}
     </UserContext.Provider>
   );
-};
+}
