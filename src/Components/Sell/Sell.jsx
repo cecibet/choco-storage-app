@@ -5,6 +5,7 @@ import Input from "../SharedComponents/InputBox/InputBox";
 import Button from "../SharedComponents/Button/Button";
 import SellsTable from "../SharedComponents/Table/SellsTable";
 import styles from "./sell.module.css";
+import Modal from "../SharedComponents/Modal/Modal";
 import stylesButton from "../SharedComponents/Button/button.module.css";
 
 const Sell = () => {
@@ -12,6 +13,9 @@ const Sell = () => {
   const [dataProducts, setDataProducts] = useState([]);
   const [productTypes, setProductTypes] = useState([]);
   const [productInOrder, setProductInOrder] = useState([]);
+  const [showModal, setShowModal] = useState(false);
+  const [modalTitle, setModalTitle] = useState("");
+  const [modalTxt, setModalTxt] = useState("");
 
   useEffect(() => {
     fetch("http://localhost:3000/products")
@@ -42,7 +46,9 @@ const Sell = () => {
       !e.target[2].value ||
       !e.target[3].value
     ) {
-      alert("Complete todos los campos");
+      setShowModal(true);
+      setModalTitle("Atención!");
+      setModalTxt("Complete todos los campos");
     } else {
       const productFound = dataProducts.find(
         (item) =>
@@ -51,12 +57,26 @@ const Sell = () => {
           item.weight.toString() === e.target[2].value
       );
       productFound["cantidad"] = e.target[3].value;
-      productFound &&
-      !productInOrder.find((item) => item.productId === productFound.productId)
-        ? checkStock(productFound.stock, e.target[3].value)
-          ? setProductInOrder([...productInOrder, productFound])
-          : alert("Stock insuficiente. Hay " + productFound.stock + " unidades")
-        : alert("Ya se cargó el producto");
+      if (
+        productFound &&
+        !productInOrder.find(
+          (item) => item.productId === productFound.productId
+        )
+      ) {
+        if (checkStock(productFound.stock, e.target[3].value)) {
+          setProductInOrder([...productInOrder, productFound]);
+        } else {
+          setShowModal(true);
+          setModalTitle("Atención!");
+          setModalTxt(
+            `Stock insuficiente. Quedan ${productFound.stock} unidades`
+          );
+        }
+      } else {
+        setShowModal(true);
+        setModalTitle("Atención!");
+        setModalTxt("El producto ya fue cargado");
+      }
     }
   };
 
@@ -84,11 +104,7 @@ const Sell = () => {
           />
           <Input labelText={"Cantidad"} min="1" />
         </div>
-        <Button
-          className={styles.btn}
-          btnText="Agregar"
-          type="submit"
-        />
+        <Button className={styles.btn} btnText="Agregar" type="submit" />
       </form>
       {productInOrder.length > 0 && (
         <SellsTable
@@ -112,6 +128,16 @@ const Sell = () => {
           setData={setProductInOrder}
         />
       )}
+      <Modal showModal={showModal} closeModal={() => setShowModal(false)}>
+        <h2>{modalTitle}</h2>
+        <p>{modalTxt}</p>
+        <Button
+          btnText={"Ok"}
+          onClick={() => {
+            setShowModal(false);
+          }}
+        />
+      </Modal>
     </div>
   );
 };
