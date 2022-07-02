@@ -11,7 +11,7 @@ const Header = () => {
     <div className={styles.hdrContainer}>
       <Logo />
       {currentUser && <p>{currentUser.name}</p>}
-      {place && <Button style={styles.btn} btnText="Logout" onClick={logout} />}
+      {place && <Button style={styles.btn} btnText="Salir" onClick={logout} />}
     </div>
   );
 };

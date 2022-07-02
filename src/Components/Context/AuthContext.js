@@ -38,7 +38,7 @@ export default function UserProvider({ children }) {
       setTimeout(() => {
         setMessageError("");
       }, 2000);
-      setMessageError("usuario o contraseña invalida");
+      setMessageError("Usuario o contraseña incorrecta.");
     }
     if (_user.length > 0) {
       setIsSubmited(true);

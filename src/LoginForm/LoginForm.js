@@ -28,27 +28,29 @@ export default function LoginForm() {
         <div className="input-container">
           <label>Usuario </label>
           <input
+            className="inputBox"
             autoFocus
             type="text"
             name="Usuario"
             value={user}
             onChange={userHandler}
-            required
+            
           />
         </div>
         <div className="input-container">
           <label>Contraseña </label>
           <input
+            className="inputBox"
             type="password"
             name="pass"
             value={pass}
             onChange={passHandler}
-            required
+            
           />
         </div>
         <p className="error">{messageError}</p>
         <div className="button-container">
-          <input type="submit" />
+          <input type="submit" value="Ingresar" />
         </div>
       </form>
     </div>

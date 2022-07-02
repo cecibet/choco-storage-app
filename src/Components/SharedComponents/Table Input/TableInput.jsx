@@ -61,7 +61,7 @@ const TableInput = ({ rowItem, defaultValue, setData, data, setDataOk }) => {
         onClick={clickHandler}
       ></Button>
       <Modal showModal={showModal} closeModal={() => setShowModal(false)}>
-        <h2>No es posible modificar la cantidad!</h2>
+        <h2>No es posible modificar la cantidad</h2>
         <p>No hay stock disponible</p>
         <Button
           style={styles.btn}

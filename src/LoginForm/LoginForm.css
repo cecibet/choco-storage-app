@@ -1,33 +1,56 @@
 .login {
-  font-family: "Kdam Thmor Pro", sans-serif;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
   gap: 20px;
   height: 60vh;
-  background-color: #212223;
   color: #f5e7d4;
 }
 
-input[type="text"],
-input[type="password"] {
+.login-form {
+  background-color: rgb(56, 56, 58);
+  border-radius: 3px;
+  padding: 2rem;
+  box-shadow: rgb(33, 33, 33) 1px 1px 3px;
+}
+
+.inputBox {
+  font-family: "Kdam Thmor Pro", sans-serif;
+  font-size: 0.9em;
   height: 5vh;
-  border: 1px solid rgba(0, 0, 0, 0.2);
+  width: 20vh;
+  border: 2px solid rgba(0, 0, 0, 0.4);
+  border-radius: 3px;
+  background-color: rgb(174, 173, 173);
+  box-shadow: rgb(33, 33, 33) 1px 1px 3px;
+}
+input:-webkit-autofill {
+  -webkit-text-fill-color: initial;
+}
+
+.inputBox:focus {
+  border: none;
+  background-color: rgb(174, 173, 173);
 }
 
 input[type="submit"] {
   margin-top: 5vh;
   cursor: pointer;
   font-size: 18px;
-  background: rgb(93, 105, 71);
-  border: 1px solid #000000;
+  background: rgb(75, 48, 133);
   color: #f5e7d4;
+  box-shadow: rgb(33, 33, 33) 1px 1px 3px;
   padding: 10px 20px;
+  border-radius: 3px;
+  border: none;
+  height: 6vh;
+  width: 20vh;
 }
 
 input[type="submit"]:hover {
-  background:rgb(122, 148, 73);
+  background: rgb(80, 59, 125);
+  transition: all 75ms ease-in-out;
 }
 
 .button-container {
@@ -35,30 +58,27 @@ input[type="submit"]:hover {
   justify-content: center;
 }
 
-.login-form {
-  background-color:   #3c1c78;
-  padding: 2rem;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}
-
 .list-container {
   display: flex;
 }
 
 .error {
-  color: rgba(211, 101, 101, 0.911);
+  color: rgba(202, 71, 71, 0.911);
   font-family: sans-serif;
-  font-size: 13px;
+  font-size: 0.9em;
 }
 
 .title {
-  font-size: 28px;
+  font-size: 1em;
   margin-bottom: 25px;
 }
 
 .input-container {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  text-align: center;
   gap: 8px;
-  margin: 10px;
+  margin: 15px;
+  height: 9vh;
 }

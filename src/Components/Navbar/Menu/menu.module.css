@@ -3,7 +3,8 @@
   align-items: center;
   justify-content: center;
   gap: 25px;
-  margin-bottom: 20px;
+  margin-bottom: 40px;
+  margin-top: 40px;
 }
 .btn {
   width: 25vh;
@@ -13,7 +14,7 @@
   font-size: 1.25em;
   text-transform: uppercase;
   text-shadow: rgba(0, 0, 0, 0.24) 0px 3px 5px;
-  box-shadow: rgb(229, 226, 229) 0px 1px 3px;
+  box-shadow: rgb(196, 195, 196) 0px 1px 3px;
   border-radius: 3px;
   border: none;
 }
