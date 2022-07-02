@@ -6,7 +6,6 @@ import Button from "../SharedComponents/Button/Button";
 import SellsTable from "../SharedComponents/Table/SellsTable";
 import styles from "./sell.module.css";
 import Modal from "../SharedComponents/Modal/Modal";
-import stylesButton from "../SharedComponents/Button/button.module.css";
 
 const Sell = () => {
   const [chocTypeOptions, setChocTypeOptions] = useState([]);
@@ -49,8 +48,8 @@ const Sell = () => {
       !e.target[3].value
     ) {
       setShowModal(true);
-      setModalTitle("Atención!");
-      setModalTxt("Complete todos los campos");
+      setModalTitle("Atención");
+      setModalTxt("Complete todos los campos.");
     } else {
       const productFound = dataProducts.find(
         (item) =>
@@ -69,15 +68,15 @@ const Sell = () => {
           setProductInOrder([...productInOrder, productFound]);
         } else {
           setShowModal(true);
-          setModalTitle("Atención!");
+          setModalTitle("Atención");
           setModalTxt(
             `Stock insuficiente. Quedan ${productFound.stock} unidades`
           );
         }
       } else {
         setShowModal(true);
-        setModalTitle("Atención!");
-        setModalTxt("El producto ya fue cargado");
+        setModalTitle("Atención");
+        setModalTxt("El producto ya fue cargado.");
       }
     }
   };
@@ -87,18 +86,26 @@ const Sell = () => {
     if (dataOk) {
       setRegSell(true);
       setShowModal(true);
-      setModalTitle("Atención!");
-      setModalTxt("Seguro que quiere registrar la venta?");
+      setModalTitle("Atención");
+      setModalTxt("¿Seguro de que quiere registrar la venta?");
     } else {
       setRegSell(false);
       setShowModal(true);
-      setModalTitle("Atención!");
-      setModalTxt("Aún no terminó de editar las cantidades");
+      setModalTitle("Atención");
+      setModalTxt("Aún no terminó de editar las cantidades.");
     }
   };
 
   const createSell = () => {
     regSell(false);
+
+    dataProducts.map((_, index) => {
+      if (productInOrder[index].productId === dataProducts[index].productId) {
+        dataProducts[index].stock -= productInOrder[index].cantidad;
+        console.log(dataProducts)
+        return dataProducts;
+      }
+    });
   };
 
   return (
