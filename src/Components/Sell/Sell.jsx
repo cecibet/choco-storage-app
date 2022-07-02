@@ -1,5 +1,4 @@
-import { useEffect } from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Dropdown from "../SharedComponents/Dropdown/Dropdown";
 import Input from "../SharedComponents/InputBox/InputBox";
 import Button from "../SharedComponents/Button/Button";
@@ -98,15 +97,22 @@ const Sell = () => {
 
   const createSell = () => {
     regSell(false);
-
-    let result;
-    result = dataProducts.map((product) => {
+    
+    const result = dataProducts.map((product) => {
       const orderItem = productInOrder.find(
         (prod) => prod.productId === product.productId
       );
       product.stock = orderItem
         ? (product.stock = product.stock - orderItem.cantidad)
         : product.stock;
+
+      fetch("http://localhost:3000/products", {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(result),
+      });
     });
   };
 

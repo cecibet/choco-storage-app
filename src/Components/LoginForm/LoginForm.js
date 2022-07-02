@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
-import { UserContext } from "../Components/Context/AuthContext";
+import { UserContext } from "../Context/AuthContext";
 import "./LoginForm.css";
-import Spinner from "../Components/SharedComponents/Spinner/Spinner";
+import Spinner from "../SharedComponents/Spinner/Spinner";
 
 export default function LoginForm() {
   const { login, messageError, isSubmited } = useContext(UserContext);
@@ -34,7 +34,6 @@ export default function LoginForm() {
             name="Usuario"
             value={user}
             onChange={userHandler}
-            
           />
         </div>
         <div className="input-container">
@@ -45,7 +44,6 @@ export default function LoginForm() {
             name="pass"
             value={pass}
             onChange={passHandler}
-            
           />
         </div>
         <p className="error">{messageError}</p>
