@@ -4,7 +4,7 @@ import Sell from "../Sell/Sell";
 import Header from "../Header/Header";
 import Menu from "../Navbar/Menu/Menu";
 import styles from "./index.module.css";
-import LoginForm from "../../LoginForm/LoginForm";
+import LoginForm from "../LoginForm/LoginForm";
 import UserProvider from "../Context/AuthContext";
 import Home from "../Home/Home";
 
