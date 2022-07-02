@@ -9,8 +9,18 @@ import { useNavigate } from "react-router-dom";
 const Menu = () => {
   const { place } = useContext(UserContext);
   const [sell, setSell] = useState(true);
+  const [checkStock, setCheckStock] = useState(true);
 
   const navigate = useNavigate();
+
+  const checkStockHandler = () => {
+   setCheckStock(!checkStock);
+    if (!checkStock) {
+      navigate("/Home", { replace: true });
+    } else {
+      navigate("/CheckStock", { replace: true });
+    }
+  };
 
   const sellHandler = () => {
     setSell(!sell);
@@ -24,8 +34,16 @@ const Menu = () => {
   return (
     <div className={styles.menu}>
       {place && <Button style={styles.btn} btnText={"Cargar compra"} />}
-      {place && <Button style={styles.btn} btnText={"Venta"} onClick={sellHandler} />}
-      {place && <Button style={styles.btn} btnText={"Ver Stock"} />}
+      {place && (
+        <Button style={styles.btn} btnText={"Venta"} onClick={sellHandler} />
+      )}
+      {place && (
+        <Button
+          style={styles.btn}
+          btnText={"Ver Stock"}
+          onClick={checkStockHandler}
+        />
+      )}
     </div>
   );
 };

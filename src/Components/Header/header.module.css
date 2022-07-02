@@ -1,5 +1,6 @@
 .hdrContainer {
   display: flex;
+  width: 100%;
   height: 100px;
   align-items: center;
   justify-content: space-between;
@@ -7,15 +8,17 @@
   border-radius: 5px;
   margin-bottom: 40px;
 }
+
 .btn {
-  width: 25vh;
-  height: 8vh;
-  color: whitesmoke;
+  width: 16vh;
+  height: 7vh;
+  color: #f5e7d4;
   background-color: rgb(75, 48, 133);
-  font-size: 1.25em;
+  font-size: 1em;
   text-transform: uppercase;
-  text-shadow: rgba(0, 0, 0, 0.24) 0px 3px 5px;
-  box-shadow: rgb(229, 226, 229) 0px 1px 3px;
+  margin-right: 20px;
+  text-shadow: rgba(0, 0, 0, 0.24) 0px 3px 4px;
+  box-shadow: rgb(196, 195, 196) 0px 1px 3px;
   border-radius: 3px;
   border: none;
 }

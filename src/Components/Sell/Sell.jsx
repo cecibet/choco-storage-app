@@ -1,12 +1,10 @@
-import { useEffect } from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Dropdown from "../SharedComponents/Dropdown/Dropdown";
 import Input from "../SharedComponents/InputBox/InputBox";
 import Button from "../SharedComponents/Button/Button";
 import SellsTable from "../SharedComponents/Table/SellsTable";
 import styles from "./sell.module.css";
 import Modal from "../SharedComponents/Modal/Modal";
-import stylesButton from "../SharedComponents/Button/button.module.css";
 
 const Sell = () => {
   const [chocTypeOptions, setChocTypeOptions] = useState([]);
@@ -49,8 +47,8 @@ const Sell = () => {
       !e.target[3].value
     ) {
       setShowModal(true);
-      setModalTitle("Atención!");
-      setModalTxt("Complete todos los campos");
+      setModalTitle("Atención");
+      setModalTxt("Complete todos los campos.");
     } else {
       const productFound = dataProducts.find(
         (item) =>
@@ -69,15 +67,15 @@ const Sell = () => {
           setProductInOrder([...productInOrder, productFound]);
         } else {
           setShowModal(true);
-          setModalTitle("Atención!");
+          setModalTitle("Atención");
           setModalTxt(
             `Stock insuficiente. Quedan ${productFound.stock} unidades`
           );
         }
       } else {
         setShowModal(true);
-        setModalTitle("Atención!");
-        setModalTxt("El producto ya fue cargado");
+        setModalTitle("Atención");
+        setModalTxt("El producto ya fue cargado.");
       }
     }
   };
@@ -87,18 +85,35 @@ const Sell = () => {
     if (dataOk) {
       setRegSell(true);
       setShowModal(true);
-      setModalTitle("Atención!");
-      setModalTxt("Seguro que quiere registrar la venta?");
+      setModalTitle("Atención");
+      setModalTxt("¿Seguro de que quiere registrar la venta?");
     } else {
       setRegSell(false);
       setShowModal(true);
-      setModalTitle("Atención!");
-      setModalTxt("Aún no terminó de editar las cantidades");
+      setModalTitle("Atención");
+      setModalTxt("Aún no terminó de editar las cantidades.");
     }
   };
 
   const createSell = () => {
     regSell(false);
+    
+    const result = dataProducts.map((product) => {
+      const orderItem = productInOrder.find(
+        (prod) => prod.productId === product.productId
+      );
+      product.stock = orderItem
+        ? (product.stock = product.stock - orderItem.cantidad)
+        : product.stock;
+
+      fetch("http://localhost:3000/products", {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(result),
+      });
+    });
   };
 
   return (
