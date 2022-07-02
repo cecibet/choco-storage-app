@@ -7,17 +7,18 @@ import styles from "./index.module.css";
 import LoginForm from "../../LoginForm/LoginForm";
 import UserProvider from "../Context/AuthContext";
 import Home from "../Home/Home";
+import CheckStock from "../CheckStock/CheckStock";
 
 const Layout = () => {
-  
   return (
     <div className={styles.layoutContainer}>
       <UserProvider>
         <Header />
         <Menu />
         <Routes>
-          <Route path="/Home" element={ <Home />} />
+          <Route path="/Home" element={<Home />} />
           <Route path="/Sell" element={<Sell />} />
+          <Route path="/CheckStock" element={<CheckStock />} />
           <Route path="/Login" element={<LoginForm />} />
           <Route
             path="/"
