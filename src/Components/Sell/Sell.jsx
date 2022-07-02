@@ -163,6 +163,7 @@ const Sell = () => {
             ]}
             setData={setProductInOrder}
             setDataOk={setDataOk}
+            inSell={true}
           />
           <Button
             onClick={sendSellHandler}
