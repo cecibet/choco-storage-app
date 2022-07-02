@@ -99,12 +99,14 @@ const Sell = () => {
   const createSell = () => {
     regSell(false);
 
-    dataProducts.map((_, index) => {
-      if (productInOrder[index].productId === dataProducts[index].productId) {
-        dataProducts[index].stock -= productInOrder[index].cantidad;
-        console.log(dataProducts)
-        return dataProducts;
-      }
+    let result;
+    result = dataProducts.map((product) => {
+      const orderItem = productInOrder.find(
+        (prod) => prod.productId === product.productId
+      );
+      product.stock = orderItem
+        ? (product.stock = product.stock - orderItem.cantidad)
+        : product.stock;
     });
   };
 
