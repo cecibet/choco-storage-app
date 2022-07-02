@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Dropdown from "../SharedComponents/Dropdown/Dropdown";
 import Input from "../SharedComponents/InputBox/InputBox";
 import Button from "../SharedComponents/Button/Button";
@@ -16,6 +17,8 @@ const Sell = () => {
   const [modalTxt, setModalTxt] = useState("");
   const [regSell, setRegSell] = useState(false);
   const [dataOk, setDataOk] = useState(true);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetch("http://localhost:3000/products")
@@ -105,7 +108,6 @@ const Sell = () => {
         ? (_product.stock = _product.stock - orderItem.cantidad)
         : _product.stock;
     });
-    console.log("dataProducts", dataProducts);
     fetch("http://localhost:3000/products", {
       method: "PUT",
       headers: {
@@ -113,6 +115,7 @@ const Sell = () => {
       },
       body: JSON.stringify(dataProducts),
     });
+    navigate("/Home", { replace: true });
   };
 
   return (
@@ -175,28 +178,30 @@ const Sell = () => {
       <Modal showModal={showModal} closeModal={() => setShowModal(false)}>
         <h2>{modalTitle}</h2>
         <p>{modalTxt}</p>
-        <Button
-          style={styles.btn}
-          btnText={"Ok"}
-          onClick={() => {
-            if (regSell) {
-              createSell();
-            } else {
-              setShowModal(false);
-              setRegSell(false);
-            }
-          }}
-        />
-        {regSell && (
+        <div className={styles.modalBtnContainer}>
           <Button
             style={styles.btn}
-            btnText={"Cancel"}
+            btnText={"Ok"}
             onClick={() => {
-              setShowModal(false);
-              setRegSell(false);
+              if (regSell) {
+                createSell();
+              } else {
+                setShowModal(false);
+                setRegSell(false);
+              }
             }}
           />
-        )}
+          {regSell && (
+            <Button
+              style={styles.btn}
+              btnText={"Cancel"}
+              onClick={() => {
+                setShowModal(false);
+                setRegSell(false);
+              }}
+            />
+          )}
+        </div>
       </Modal>
     </div>
   );
