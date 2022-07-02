@@ -2,7 +2,14 @@ import styles from "./table.module.css";
 import TableInput from "../Table Input/TableInput";
 import Button from "../Button/Button";
 
-const SellsTable = ({ headers, data, rowInputs, setData, setDataOk }) => {
+const SellsTable = ({
+  headers,
+  data,
+  rowInputs,
+  setData,
+  setDataOk,
+  inSell,
+}) => {
   const handleDelete = (e) => {
     const filteredData = data.filter(
       (item) => item.productId.toString() !== e.target.value
@@ -17,7 +24,7 @@ const SellsTable = ({ headers, data, rowInputs, setData, setDataOk }) => {
             {headers.map((header, index) => {
               return <th key={index}>{header}</th>;
             })}
-            <th>...</th>
+            {inSell && <th>...</th>}
           </tr>
         </thead>
         <tbody>
@@ -31,17 +38,22 @@ const SellsTable = ({ headers, data, rowInputs, setData, setDataOk }) => {
                       setData={setData}
                       rowItem={row}
                       defaultValue={row[rowInput]}
-                      setDataOk ={setDataOk}
+                      setDataOk={setDataOk}
                     />
                   ) : (
                     <td key={i}>{row[rowInput]}</td>
                   );
                 })}
-                <td>
-                  <Button btnText={"Borrar"} style={styles.btn} value={row.productId} onClick={handleDelete}>
-        
-                  </Button>
-                </td>
+                {inSell && (
+                  <td>
+                    <Button
+                      btnText={"Borrar"}
+                      style={styles.btn}
+                      value={row.productId}
+                      onClick={handleDelete}
+                    ></Button>
+                  </td>
+                )}
               </tr>
             );
           })}
