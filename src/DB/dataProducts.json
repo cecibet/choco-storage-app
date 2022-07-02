@@ -153,7 +153,6 @@
       "stock": 2
     }
   ],
-  
   "users": [
     {
       "id": 100,
@@ -170,7 +169,7 @@
       "superAdmin": false,
       "name": "Cecilia",
       "description": "employee"
-    },     
+    },
     {
       "id": 200,
       "username": "fabrizio",
@@ -181,4 +180,3 @@
     }
   ]
 }
-

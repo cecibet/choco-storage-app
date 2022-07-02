@@ -96,23 +96,22 @@ const Sell = () => {
   };
 
   const createSell = () => {
-    regSell(false);
-    
-    const result = dataProducts.map((product) => {
+    setRegSell(false);
+    dataProducts.map((_product) => {
       const orderItem = productInOrder.find(
-        (prod) => prod.productId === product.productId
+        (prod) => prod.productId === _product.productId
       );
-      product.stock = orderItem
-        ? (product.stock = product.stock - orderItem.cantidad)
-        : product.stock;
-
-      fetch("http://localhost:3000/products", {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(result),
-      });
+      _product.stock = orderItem
+        ? (_product.stock = _product.stock - orderItem.cantidad)
+        : _product.stock;
+    });
+    console.log("dataProducts", dataProducts);
+    fetch("http://localhost:3000/products", {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(dataProducts),
     });
   };
 
