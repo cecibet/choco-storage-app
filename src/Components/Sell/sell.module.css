@@ -35,3 +35,9 @@
   box-shadow: rgb(229, 226, 229) 0px 1px 5px;
   transition: all 75ms ease-in-out;
 }
+.modalBtnContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 100%;
+}
